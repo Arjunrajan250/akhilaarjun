@@ -43,7 +43,7 @@ export default function MusicSection({ herName }) {
           className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-mono tracking-wider"
         >
           <Sparkles className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-          <span>CELESTIAL FREQUENCIES // 7 ROMANTIC COMPOSITIONS</span>
+          <span>CELESTIAL FREQUENCIES // {songs.length} ROMANTIC COMPOSITIONS</span>
         </motion.div>
 
         <motion.h2 

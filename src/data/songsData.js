@@ -1,5 +1,15 @@
-// Metadata catalog for the 7 romantic songs in /public/music
+// Metadata catalog for the romantic songs in /public/music
 export const SONGS = [
+  {
+    id: 'dhadak-title-track',
+    title: 'Dhadak - Title Track',
+    artist: 'Shreya Ghoshal & Ajay Gogavale',
+    src: '/music/Dhadak - Title Track - Shreya Ghoshal_ Ajay Gogavale.mp3',
+    mood: 'Heartfelt Harmony',
+    tag: 'Eternal Heartbeat',
+    accent: 'from-pink-500 to-rose-600',
+    description: 'An emotional and timeless melody capturing the pure rhythm of two souls beating as one across all dimensions.'
+  },
   {
     id: 'jo-tum-mere-ho',
     title: 'Jo Tum Mere Ho',
