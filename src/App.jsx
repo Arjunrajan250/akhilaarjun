@@ -23,6 +23,7 @@ import ReasonsDeck from './components/ReasonsDeck';
 import SystemVows from './components/SystemVows';
 import MusicSection from './components/MusicSection';
 import FloatingMusicPlayer from './components/FloatingMusicPlayer';
+import FloatingHeartbeatWidget from './components/FloatingHeartbeatWidget';
 import MobileBottomDock from './components/MobileBottomDock';
 import DoubleTapHearts from './components/DoubleTapHearts';
 import PWAInstallBanner from './components/PWAInstallBanner';
@@ -38,6 +39,7 @@ function MultiverseApp() {
   });
   const [herName] = useState('Lechu');
   const [isSecretVaultOpen, setIsSecretVaultOpen] = useState(false);
+  const [isHeartbeatModalOpen, setIsHeartbeatModalOpen] = useState(false);
   const [isDivineVideoEnabled, setIsDivineVideoEnabled] = useState(true);
   const [elapsed, setElapsed] = useState({
     days: 0,
@@ -119,6 +121,7 @@ function MultiverseApp() {
               daysTogether={elapsed.days}
               herName={herName}
               onOpenSecretVault={() => setIsSecretVaultOpen(true)}
+              onOpenHeartbeat={() => setIsHeartbeatModalOpen(true)}
               isDivineVideoEnabled={isDivineVideoEnabled}
               onToggleDivineVideo={() => setIsDivineVideoEnabled((prev) => !prev)}
             />
@@ -151,14 +154,10 @@ function MultiverseApp() {
                   className="max-w-2xl mx-auto p-6 sm:p-8 rounded-3xl glass-panel border border-[#e8c99b]/25 shadow-2xl relative overflow-hidden bg-[#0e121c]/80"
                 >
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#e8c99b] to-transparent" />
-                  <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-slate-400 mb-4 sm:mb-5 border-b border-white/8 pb-3 gap-2">
+                  <div className="flex items-center justify-center text-[11px] sm:text-xs font-mono text-slate-400 mb-4 sm:mb-5 border-b border-white/8 pb-3 gap-2">
                     <span className="flex items-center gap-1.5 sm:gap-2">
                       <Clock className="w-3.5 h-3.5 text-[#e8c99b] shrink-0" />
                       <span className="tracking-wider text-slate-300 uppercase">TIME SPENT IN LOVE WITH HER</span>
-                    </span>
-                    <span className="text-emerald-400 flex items-center gap-1.5 font-medium shrink-0">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                      SYNCHRONIZED
                     </span>
                   </div>
 
@@ -215,14 +214,17 @@ function MultiverseApp() {
                   transition={{ delay: 0.45 }}
                   className="flex flex-wrap items-center justify-center gap-3 pt-2"
                 >
-                  <a
-                    href="#heartbeat"
-                    onClick={() => sound.playChime(659.25, 0.2)}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      sound.playChime(659.25, 0.2);
+                      setIsHeartbeatModalOpen(true);
+                    }}
                     className="px-6 py-3 rounded-full bg-gradient-to-r from-[#d96b82] to-[#b84760] hover:from-[#e08599] hover:to-[#c2546c] text-white text-xs sm:text-sm font-medium tracking-wide shadow-lg shadow-[#d96b82]/25 border border-[#e8c99b]/30 transition-all cursor-pointer flex items-center gap-2 active:scale-95"
                   >
                     <Activity className="w-4 h-4 animate-pulse text-[#f5e4cb]" />
                     <span>Feel My Heartbeat</span>
-                  </a>
+                  </button>
 
                   <a
                     href="#timeline"
@@ -236,40 +238,35 @@ function MultiverseApp() {
                 </motion.div>
               </section>
 
-              {/* 1. Hold to Feel My Heartbeat Sensory Section */}
-              <section id="heartbeat" className="scroll-mt-28">
-                <HeartbeatWidget herName={herName} />
-              </section>
-
-              {/* 2. Chrono Timeline Section */}
+              {/* 1. Chrono Timeline Section */}
               <section id="timeline" className="scroll-mt-28">
                 <Timeline herName={herName} />
               </section>
 
-              {/* 3. Memory Constellation Photo Gallery Section */}
+              {/* 2. Memory Constellation Photo Gallery Section */}
               <section id="memories" className="scroll-mt-28">
                 <MemoryGallery herName={herName} />
               </section>
 
-              {/* 4. The Moon Under Which We Began Astronomy Visualizer */}
+              {/* 3. The Moon Under Which We Began Astronomy Visualizer */}
               <section id="moon" className="scroll-mt-28">
                 <MoonPhaseSection herName={herName} />
               </section>
 
-              {/* 5. Romantic Soundtrack Section */}
+              {/* 4. Romantic Soundtrack Section */}
               <MusicSection herName={herName} />
 
-              {/* 6. Swipeable Reasons Why I Love You Card Deck */}
+              {/* 5. Swipeable Reasons Why I Love You Card Deck */}
               <section id="reasons" className="scroll-mt-28">
                 <ReasonsDeck herName={herName} />
               </section>
 
-              {/* 7. Secret "Open When..." Love Letter Vault */}
+              {/* 6. Secret "Open When..." Love Letter Vault */}
               <section id="letters" className="scroll-mt-28">
                 <LoveLetterVault herName={herName} />
               </section>
 
-              {/* 8. System Specifications & Vows Section */}
+              {/* 7. System Specifications & Vows Section */}
               <section id="vows" className="scroll-mt-28">
                 <SystemVows herName={herName} daysTogether={elapsed.days} />
               </section>
@@ -279,8 +276,42 @@ function MultiverseApp() {
             {/* Persistent Floating Music Player Dock */}
             <FloatingMusicPlayer />
 
+            {/* Persistent Floating Heartbeat Sensory Telemetry Trigger */}
+            <FloatingHeartbeatWidget onClick={() => setIsHeartbeatModalOpen(true)} />
+
+            {/* Floating Heartbeat Sensory Modal */}
+            <AnimatePresence>
+              {isHeartbeatModalOpen && (
+                <div 
+                  className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#08090e]/90 backdrop-blur-2xl overflow-y-auto"
+                  onClick={(e) => {
+                    if (e.target === e.currentTarget) {
+                      sound.stopHeartbeatLoop();
+                      setIsHeartbeatModalOpen(false);
+                    }
+                  }}
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9, y: 25 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: 25 }}
+                    transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                    className="w-full max-w-3xl"
+                  >
+                    <HeartbeatWidget 
+                      herName={herName} 
+                      onClose={() => {
+                        sound.stopHeartbeatLoop();
+                        setIsHeartbeatModalOpen(false);
+                      }} 
+                    />
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+
             {/* Mobile Bottom Quick-Dock Navigation */}
-            <MobileBottomDock />
+            <MobileBottomDock onOpenHeartbeat={() => setIsHeartbeatModalOpen(true)} />
 
             {/* Footer */}
             <footer className="w-full border-t border-white/8 bg-[#08090e]/90 backdrop-blur-md py-10 px-4 sm:px-6 text-center space-y-4">

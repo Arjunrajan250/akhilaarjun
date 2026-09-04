@@ -24,13 +24,13 @@ const DOCK_ITEMS = [
   { id: 'soundtrack', href: '#soundtrack', label: 'Music', icon: Music },
 ];
 
-export default function MobileBottomDock() {
+export default function MobileBottomDock({ onOpenHeartbeat }) {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPos = window.scrollY + 200;
-      const sections = ['soundtrack', 'vows', 'reasons', 'letters', 'moon', 'memories', 'timeline', 'heartbeat'];
+      const sections = ['soundtrack', 'vows', 'reasons', 'letters', 'moon', 'memories', 'timeline'];
 
       for (const sectionId of sections) {
         const el = document.getElementById(sectionId);
@@ -50,6 +50,12 @@ export default function MobileBottomDock() {
     e.preventDefault();
     haptics.light();
     sound.playChime(587.33, 0.15);
+
+    if (item.id === 'heartbeat' && onOpenHeartbeat) {
+      onOpenHeartbeat();
+      return;
+    }
+
     setActiveSection(item.id);
 
     if (item.href === '#') {

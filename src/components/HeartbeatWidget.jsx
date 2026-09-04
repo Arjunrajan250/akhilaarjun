@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Activity, Sparkles, ShieldCheck, Flame } from 'lucide-react';
+import { Heart, Activity, Sparkles, ShieldCheck, Flame, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { sound } from '../utils/sound';
 import { haptics } from '../utils/haptics';
@@ -49,7 +49,7 @@ const TELEMETRY_STAGES = [
   },
 ];
 
-export default function HeartbeatWidget({ herName = 'Lechu' }) {
+export default function HeartbeatWidget({ herName = 'Lechu', onClose }) {
   const [isHolding, setIsHolding] = useState(false);
   const [holdDuration, setHoldDuration] = useState(0);
   const [maxStageReached, setMaxStageReached] = useState(false);
@@ -107,6 +107,12 @@ export default function HeartbeatWidget({ herName = 'Lechu' }) {
     };
   }, []);
 
+  const handleClose = () => {
+    endHold();
+    sound.stopHeartbeatLoop();
+    if (onClose) onClose();
+  };
+
   return (
     <div className="relative w-full max-w-3xl mx-auto px-2 sm:px-4 select-none">
       {/* Container Card */}
@@ -121,6 +127,18 @@ export default function HeartbeatWidget({ herName = 'Lechu' }) {
             : 'border-[#e8c99b]/20 bg-[#08090e]/80'
         }`}
       >
+        {/* Close Button if in modal */}
+        {onClose && (
+          <button
+            type="button"
+            onClick={handleClose}
+            aria-label="Close heartbeat telemetry modal"
+            className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 text-slate-300 hover:text-white transition-all cursor-pointer active:scale-95 shadow-md"
+          >
+            <X className="w-4 h-4" />
+          </button>
+        )}
+
         {/* Ambient Top Glow Beam */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-1 bg-gradient-to-r from-transparent via-[#e8c99b] to-transparent opacity-80" />
 

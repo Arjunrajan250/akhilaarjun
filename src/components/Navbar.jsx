@@ -22,6 +22,7 @@ export default function Navbar({
   daysTogether, 
   herName, 
   onOpenSecretVault,
+  onOpenHeartbeat,
   isDivineVideoEnabled = true,
   onToggleDivineVideo
 }) {
@@ -111,6 +112,22 @@ export default function Navbar({
         <nav className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => {
             const Icon = link.icon;
+            if (link.href === '#heartbeat' && onOpenHeartbeat) {
+              return (
+                <button
+                  key={link.label}
+                  type="button"
+                  onClick={() => {
+                    sound.playChime(493.88, 0.15);
+                    onOpenHeartbeat();
+                  }}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-[#faf7f2] hover:bg-white/8 transition-all cursor-pointer"
+                >
+                  <Icon className="w-3.5 h-3.5 text-[#d96b82]" />
+                  <span>{link.label}</span>
+                </button>
+              );
+            }
             return (
               <a
                 key={link.label}
@@ -201,6 +218,23 @@ export default function Navbar({
         <div className="md:hidden mt-2 p-4 rounded-2xl glass-panel-glow border border-[#e8c99b]/25 bg-[#08090e]/95 space-y-1.5 backdrop-blur-xl shadow-2xl animate-[fadeIn_0.2s_ease-out]">
           {navLinks.map((link) => {
             const Icon = link.icon;
+            if (link.href === '#heartbeat' && onOpenHeartbeat) {
+              return (
+                <button
+                  key={link.label}
+                  type="button"
+                  onClick={() => {
+                    sound.playChime(493.88, 0.15);
+                    setIsMobileMenuOpen(false);
+                    onOpenHeartbeat();
+                  }}
+                  className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:bg-white/8 hover:text-[#fcdfe6] transition-colors cursor-pointer text-left"
+                >
+                  <Icon className="w-4 h-4 text-[#d96b82]" />
+                  <span>{link.label}</span>
+                </button>
+              );
+            }
             return (
               <a
                 key={link.label}
