@@ -131,9 +131,9 @@ export default function StarfieldBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[#08090e]">
+    <div className="fixed inset-0 pointer-events-none z-[2] overflow-hidden">
       <canvas ref={canvasRef} className="w-full h-full block" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#08090e]/30 to-[#08090e]/85 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#08090e]/20 to-[#08090e]/60 pointer-events-none" />
     </div>
   );
 }

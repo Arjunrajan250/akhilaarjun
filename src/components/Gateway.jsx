@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Lock, KeyRound, Sparkles, Heart, HelpCircle, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Lock, KeyRound, Sparkles, Heart, HelpCircle, ShieldCheck } from 'lucide-react';
 import { sound } from '../utils/sound';
 
 export default function Gateway({ onUnlock, herName }) {
@@ -49,11 +49,6 @@ export default function Gateway({ onUnlock, herName }) {
     setTimeout(() => {
       onUnlock();
     }, 1200);
-  };
-
-  const handleQuickUnlock = () => {
-    setDate('10-06-2023');
-    triggerUnlock();
   };
 
   return (
@@ -144,8 +139,8 @@ export default function Gateway({ onUnlock, herName }) {
           )}
         </AnimatePresence>
 
-        {/* Quick Hint / Assisted Access */}
-        <div className="flex items-center justify-between pt-4 border-t border-white/8 text-xs text-slate-400">
+        {/* Quick Hint */}
+        <div className="flex items-center justify-center pt-4 border-t border-white/8 text-xs text-slate-400">
           <button
             type="button"
             onClick={() => setShowHint(!showHint)}
@@ -153,16 +148,6 @@ export default function Gateway({ onUnlock, herName }) {
           >
             <HelpCircle className="w-3.5 h-3.5" />
             <span>Need a clue?</span>
-          </button>
-
-          <button
-            type="button"
-            id="quick-unlock-btn"
-            onClick={handleQuickUnlock}
-            className="inline-flex items-center gap-1 text-[#e8c99b] hover:text-[#faf7f2] transition-colors font-medium cursor-pointer"
-          >
-            <span>Oct 6, 2023</span>
-            <ArrowRight className="w-3 h-3" />
           </button>
         </div>
 
@@ -173,9 +158,9 @@ export default function Gateway({ onUnlock, herName }) {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="mt-4 p-3.5 rounded-xl bg-[#e8c99b]/10 border border-[#e8c99b]/25 text-[#f3e8d0] text-xs text-left leading-relaxed"
+              className="mt-4 p-3.5 rounded-xl bg-[#e8c99b]/10 border border-[#e8c99b]/25 text-[#f3e8d0] text-xs text-center leading-relaxed font-medium"
             >
-              ✨ <strong className="text-white">Clue:</strong> October 6th, 2023. The start of everything. (Type <code className="text-[#e8c99b] font-mono">10-06-2023</code> or <code className="text-[#e8c99b] font-mono">06-10-2023</code>).
+              😜 Onnu podi nokki iruno ipoo parnju thraam
             </motion.div>
           )}
         </AnimatePresence>

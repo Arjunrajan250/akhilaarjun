@@ -30,8 +30,7 @@ http://localhost:5173
 
 ### 3. Unlock the Multiverse
 1. On the Gateway screen, enter the anniversary date: **`10-06-2023`** (or **`06-10-2023`**).
-2. Or click the **`Oct 6, 2023`** quick-unlock button on the bottom right.
-3. The temporal warp will unlock into the full interactive experience.
+2. The temporal warp will unlock into the full interactive experience.
 
 ---
 

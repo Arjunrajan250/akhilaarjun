@@ -11,6 +11,7 @@ import {
   KeyRound
 } from 'lucide-react';
 import StarfieldBackground from './components/StarfieldBackground';
+import RadhaKrishnaBackground from './components/RadhaKrishnaBackground';
 import Gateway from './components/Gateway';
 import Navbar from './components/Navbar';
 import HeartbeatWidget from './components/HeartbeatWidget';
@@ -37,6 +38,7 @@ function MultiverseApp() {
   });
   const [herName] = useState('Lechu');
   const [isSecretVaultOpen, setIsSecretVaultOpen] = useState(false);
+  const [isDivineVideoEnabled, setIsDivineVideoEnabled] = useState(true);
   const [elapsed, setElapsed] = useState({
     days: 0,
     hours: 0,
@@ -70,6 +72,12 @@ function MultiverseApp() {
 
   return (
     <div className="relative min-h-screen bg-[#08090e] text-[#faf7f2] selection:bg-[#d96b82]/25 selection:text-[#fcdfe6] overflow-x-hidden font-sans">
+      {/* Divine Radha-Krishna Ambient Video Background */}
+      <RadhaKrishnaBackground 
+        isEnabled={isDivineVideoEnabled} 
+        opacity={0.32} 
+      />
+
       {/* Universal Starfield Background Canvas */}
       <StarfieldBackground />
 
@@ -111,6 +119,8 @@ function MultiverseApp() {
               daysTogether={elapsed.days}
               herName={herName}
               onOpenSecretVault={() => setIsSecretVaultOpen(true)}
+              isDivineVideoEnabled={isDivineVideoEnabled}
+              onToggleDivineVideo={() => setIsDivineVideoEnabled((prev) => !prev)}
             />
 
             {/* Main Content Area */}

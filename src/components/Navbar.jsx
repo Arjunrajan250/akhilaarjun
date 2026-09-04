@@ -11,13 +11,20 @@ import {
   Camera, 
   Music, 
   Activity, 
-  Moon 
+  Moon,
+  Video 
 } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { haptics } from '../utils/haptics';
 import { useMusic } from '../context/MusicContext';
 
-export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
+export default function Navbar({ 
+  daysTogether, 
+  herName, 
+  onOpenSecretVault,
+  isDivineVideoEnabled = true,
+  onToggleDivineVideo
+}) {
   const [isMuted, setIsMuted] = useState(sound.isMuted);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -157,6 +164,26 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
 
+          {/* Divine Radha-Krishna Background Video Toggle */}
+          {onToggleDivineVideo && (
+            <button
+              type="button"
+              onClick={onToggleDivineVideo}
+              aria-label={isDivineVideoEnabled ? 'Pause divine background video' : 'Play divine background video'}
+              title={isDivineVideoEnabled ? 'Divine Ambience: On' : 'Divine Ambience: Off'}
+              className={`p-2 rounded-xl sm:rounded-full border transition-all cursor-pointer flex items-center gap-1.5 ${
+                isDivineVideoEnabled
+                  ? 'bg-[#e8c99b]/20 border-[#e8c99b]/40 text-[#f5e4cb] shadow-sm'
+                  : 'bg-white/5 border-white/10 text-slate-500 hover:text-slate-300'
+              }`}
+            >
+              <Video className="w-4 h-4" />
+              <span className="hidden xl:inline text-[10px] font-sans tracking-wider uppercase font-medium">
+                Divine Video
+              </span>
+            </button>
+          )}
+
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
@@ -189,6 +216,25 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
               </a>
             );
           })}
+
+          {onToggleDivineVideo && (
+            <button
+              type="button"
+              onClick={() => {
+                onToggleDivineVideo();
+                sound.playChime(587.33, 0.15);
+              }}
+              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:bg-white/8 transition-colors border-t border-white/10 pt-3 mt-1 cursor-pointer"
+            >
+              <span className="flex items-center gap-3">
+                <Video className="w-4 h-4 text-[#e8c99b]" />
+                <span>Divine Video Ambience</span>
+              </span>
+              <span className={`px-2 py-0.5 rounded-full text-[10px] font-sans ${isDivineVideoEnabled ? 'bg-[#e8c99b]/25 text-[#f5e4cb] border border-[#e8c99b]/40' : 'bg-white/10 text-slate-400'}`}>
+                {isDivineVideoEnabled ? 'Active' : 'Paused'}
+              </span>
+            </button>
+          )}
         </div>
       )}
     </header>
