@@ -1,9 +1,12 @@
 // Web Audio API synth tones for ambient cosmic sounds and feedback (Zero external asset dependencies)
+import { haptics } from './haptics';
+
 class SoundFX {
   constructor() {
     this.ctx = null;
     this.ambientGain = null;
     this.isMuted = false;
+    this.heartbeatInterval = null;
   }
 
   init() {
@@ -29,7 +32,7 @@ class SoundFX {
       osc.type = type;
       osc.frequency.setValueAtTime(frequency, this.ctx.currentTime);
       // Slight pitch bend for dreamlike tone
-      osc.frequency.exponentialRampToValueAtTime(frequency * 1.5, this.ctx.currentTime + duration);
+      osc.frequency.exponentialRampToValueAtTime(frequency * 1.4, this.ctx.currentTime + duration);
 
       gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + duration);
@@ -45,6 +48,7 @@ class SoundFX {
   }
 
   playUnlockChord() {
+    haptics.success();
     // Ethereal major chord (F# - A# - C# - F - G#)
     const notes = [370, 466, 554, 698, 830];
     notes.forEach((freq, idx) => {
@@ -54,47 +58,69 @@ class SoundFX {
     });
   }
 
-  playHeartbeat() {
+  playHeartbeat(triggerHaptic = true) {
+    if (triggerHaptic) {
+      haptics.heartbeat();
+    }
+
     try {
       this.init();
       if (!this.ctx || this.isMuted) return;
 
+      const now = this.ctx.currentTime;
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
 
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(80, this.ctx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(40, this.ctx.currentTime + 0.15);
+      osc.frequency.setValueAtTime(80, now);
+      osc.frequency.exponentialRampToValueAtTime(40, now + 0.15);
 
-      gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.18);
+      gain.gain.setValueAtTime(0.22, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
 
       osc.connect(gain);
       gain.connect(this.ctx.destination);
 
       osc.start();
-      osc.stop(this.ctx.currentTime + 0.2);
+      osc.stop(now + 0.2);
 
       // Lub-dub second beat
       setTimeout(() => {
         if (!this.ctx || this.isMuted) return;
+        const now2 = this.ctx.currentTime;
         const osc2 = this.ctx.createOscillator();
         const gain2 = this.ctx.createGain();
         osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(70, this.ctx.currentTime);
-        osc2.frequency.exponentialRampToValueAtTime(35, this.ctx.currentTime + 0.18);
+        osc2.frequency.setValueAtTime(65, now2);
+        osc2.frequency.exponentialRampToValueAtTime(32, now2 + 0.18);
 
-        gain2.gain.setValueAtTime(0.15, this.ctx.currentTime);
-        gain2.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
+        gain2.gain.setValueAtTime(0.16, now2);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now2 + 0.2);
 
         osc2.connect(gain2);
         gain2.connect(this.ctx.destination);
 
         osc2.start();
-        osc2.stop(this.ctx.currentTime + 0.22);
+        osc2.stop(now2 + 0.22);
       }, 140);
     } catch (e) {
       console.warn("Heartbeat sound error", e);
+    }
+  }
+
+  startHeartbeatLoop(bpm = 72) {
+    this.stopHeartbeatLoop();
+    const intervalMs = (60 / bpm) * 1000;
+    this.playHeartbeat(true);
+    this.heartbeatInterval = setInterval(() => {
+      this.playHeartbeat(true);
+    }, intervalMs);
+  }
+
+  stopHeartbeatLoop() {
+    if (this.heartbeatInterval) {
+      clearInterval(this.heartbeatInterval);
+      this.heartbeatInterval = null;
     }
   }
 
@@ -105,3 +131,4 @@ class SoundFX {
 }
 
 export const sound = new SoundFX();
+

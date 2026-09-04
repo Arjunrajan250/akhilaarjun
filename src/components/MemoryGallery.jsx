@@ -633,12 +633,28 @@ export default function MemoryGallery({ herName }) {
 
               {/* Lightbox Content Layout */}
               <div className="grid grid-cols-1 md:grid-cols-12 gap-0 overflow-y-auto flex-1 custom-scrollbar">
-                {/* Photo Display View */}
-                <div className="relative md:col-span-7 bg-slate-950 flex items-center justify-center p-3 sm:p-6 min-h-[240px] sm:min-h-[440px]">
+                {/* Photo Display View with Touch Swipe */}
+                <div 
+                  className="relative md:col-span-7 bg-slate-950 flex items-center justify-center p-3 sm:p-6 min-h-[260px] sm:min-h-[440px] touch-pan-y"
+                  onTouchStart={(e) => {
+                    window._lightboxTouchStartX = e.changedTouches[0].clientX;
+                  }}
+                  onTouchEnd={(e) => {
+                    if (window._lightboxTouchStartX !== undefined) {
+                      const deltaX = e.changedTouches[0].clientX - window._lightboxTouchStartX;
+                      if (deltaX > 50) {
+                        handlePrev();
+                      } else if (deltaX < -50) {
+                        handleNext();
+                      }
+                      window._lightboxTouchStartX = undefined;
+                    }
+                  }}
+                >
                   <img
                     src={filteredMemories[selectedPhotoIndex].src}
                     alt={filteredMemories[selectedPhotoIndex].title}
-                    className="max-h-[350px] sm:max-h-[500px] w-full object-contain rounded-2xl shadow-2xl border border-white/10"
+                    className="max-h-[350px] sm:max-h-[500px] w-full object-contain rounded-2xl shadow-2xl border border-white/10 select-none pointer-events-none"
                   />
 
                   {/* Navigation Arrows */}
@@ -646,7 +662,7 @@ export default function MemoryGallery({ herName }) {
                     type="button"
                     onClick={handlePrev}
                     aria-label="Previous photo"
-                    className="absolute left-4 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg"
+                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
@@ -654,7 +670,7 @@ export default function MemoryGallery({ herName }) {
                     type="button"
                     onClick={handleNext}
                     aria-label="Next photo"
-                    className="absolute right-4 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg"
+                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>

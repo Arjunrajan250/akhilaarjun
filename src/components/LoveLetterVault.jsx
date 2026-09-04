@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Heart, Sparkles, X, KeyRound } from 'lucide-react';
+import { Mail, Heart, X } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { sound } from '../utils/sound';
+import { haptics } from '../utils/haptics';
 
 const LOVE_LETTERS = [
   {
@@ -112,7 +113,7 @@ export default function LoveLetterVault({ herName }) {
 
       {/* Letters Envelopes Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-        {LOVE_LETTERS.map((item, idx) => {
+        {LOVE_LETTERS.map((item) => {
           const isOpened = openedLetters[item.id];
           return (
             <motion.div

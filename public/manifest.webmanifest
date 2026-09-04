@@ -1,0 +1,18 @@
+{
+  "name": "Arjun & Lechu | Digital Multiverse",
+  "short_name": "Arjun & Lechu",
+  "description": "A digital multiverse and eternal archive compiled for Lechu, commemorating October 6, 2023.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#030712",
+  "theme_color": "#030712",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -6,18 +6,26 @@ import {
   Calendar, 
   ShieldCheck, 
   Infinity as InfinityIcon,
-  ChevronDown
+  ChevronDown,
+  Activity,
+  KeyRound
 } from 'lucide-react';
 import StarfieldBackground from './components/StarfieldBackground';
 import Gateway from './components/Gateway';
 import Navbar from './components/Navbar';
+import HeartbeatWidget from './components/HeartbeatWidget';
 import Timeline from './components/Timeline';
 import MemoryGallery from './components/MemoryGallery';
+import MoonPhaseSection from './components/MoonPhaseSection';
 import LoveLetterVault from './components/LoveLetterVault';
 import ReasonsDeck from './components/ReasonsDeck';
 import SystemVows from './components/SystemVows';
 import MusicSection from './components/MusicSection';
 import FloatingMusicPlayer from './components/FloatingMusicPlayer';
+import MobileBottomDock from './components/MobileBottomDock';
+import DoubleTapHearts from './components/DoubleTapHearts';
+import PWAInstallBanner from './components/PWAInstallBanner';
+import SecretVaultModal from './components/SecretVaultModal';
 import { MusicProvider } from './context/MusicContext';
 import { sound } from './utils/sound';
 
@@ -28,6 +36,7 @@ function MultiverseApp() {
     return sessionStorage.getItem('multiverse_unlocked') === 'true';
   });
   const [herName] = useState('Lechu');
+  const [isSecretVaultOpen, setIsSecretVaultOpen] = useState(false);
   const [elapsed, setElapsed] = useState({
     days: 0,
     hours: 0,
@@ -64,6 +73,19 @@ function MultiverseApp() {
       {/* Universal Starfield Background Canvas */}
       <StarfieldBackground />
 
+      {/* Global Double-Tap Floating Flying Hearts */}
+      <DoubleTapHearts />
+
+      {/* Mobile PWA Install Helper Banner */}
+      <PWAInstallBanner herName={herName} />
+
+      {/* Secret Easter Egg Modal */}
+      <SecretVaultModal
+        isOpen={isSecretVaultOpen}
+        onClose={() => setIsSecretVaultOpen(false)}
+        herName={herName}
+      />
+
       <AnimatePresence mode="wait">
         {!isUnlocked ? (
           <motion.div
@@ -88,10 +110,11 @@ function MultiverseApp() {
             <Navbar 
               daysTogether={elapsed.days}
               herName={herName}
+              onOpenSecretVault={() => setIsSecretVaultOpen(true)}
             />
 
             {/* Main Content Area */}
-            <main className="flex-1 w-full max-w-6xl mx-auto px-3 sm:px-6 pt-24 sm:pt-36 pb-28 space-y-16 sm:space-y-32">
+            <main className="flex-1 w-full max-w-6xl mx-auto px-3 sm:px-6 pt-24 sm:pt-36 pb-32 sm:pb-36 space-y-16 sm:space-y-32">
               
               {/* Hero Section */}
               <section className="relative text-center space-y-8 pt-4 sm:pt-8">
@@ -183,41 +206,60 @@ function MultiverseApp() {
                   className="flex flex-wrap items-center justify-center gap-3 pt-2"
                 >
                   <a
-                    href="#timeline"
+                    href="#heartbeat"
                     onClick={() => sound.playChime(659.25, 0.2)}
-                    className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white text-xs sm:text-sm font-medium tracking-wide shadow-lg shadow-pink-600/30 transition-all cursor-pointer flex items-center gap-2"
+                    className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white text-xs sm:text-sm font-medium tracking-wide shadow-lg shadow-pink-600/30 transition-all cursor-pointer flex items-center gap-2 active:scale-95"
                   >
-                    <Heart className="w-4 h-4 fill-white" />
+                    <Activity className="w-4 h-4 animate-pulse" />
+                    <span>Feel My Heartbeat</span>
+                  </a>
+
+                  <a
+                    href="#timeline"
+                    onClick={() => sound.playChime(587.33, 0.2)}
+                    className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-slate-200 text-xs sm:text-sm font-medium transition-all cursor-pointer flex items-center gap-2 active:scale-95"
+                  >
+                    <Heart className="w-4 h-4 text-rose-400" />
                     <span>Explore Our Story</span>
                     <ChevronDown className="w-4 h-4" />
                   </a>
                 </motion.div>
               </section>
 
-              {/* Chrono Timeline Section */}
+              {/* 1. Hold to Feel My Heartbeat Sensory Section */}
+              <section id="heartbeat" className="scroll-mt-28">
+                <HeartbeatWidget herName={herName} />
+              </section>
+
+              {/* 2. Chrono Timeline Section */}
               <section id="timeline" className="scroll-mt-28">
                 <Timeline herName={herName} />
               </section>
 
-              {/* Memory Constellation Photo Gallery Section */}
+              {/* 3. Memory Constellation Photo Gallery Section */}
               <section id="memories" className="scroll-mt-28">
                 <MemoryGallery herName={herName} />
               </section>
 
-              {/* Romantic Cosmic Soundtrack Section */}
+              {/* 4. The Moon Under Which We Began Astronomy Visualizer */}
+              <section id="moon" className="scroll-mt-28">
+                <MoonPhaseSection herName={herName} />
+              </section>
+
+              {/* 5. Romantic Cosmic Soundtrack Section */}
               <MusicSection herName={herName} />
 
-              {/* Infinite Reasons Why I Love You Card Deck */}
+              {/* 6. Tinder-Style Infinite Reasons Why I Love You Card Deck */}
               <section id="reasons" className="scroll-mt-28">
                 <ReasonsDeck herName={herName} />
               </section>
 
-              {/* Secret "Open When..." Love Letter Vault */}
+              {/* 7. Secret "Open When..." Love Letter Vault */}
               <section id="letters" className="scroll-mt-28">
                 <LoveLetterVault herName={herName} />
               </section>
 
-              {/* System Specifications & Vows Section */}
+              {/* 8. System Specifications & Vows Section */}
               <section id="vows" className="scroll-mt-28">
                 <SystemVows herName={herName} daysTogether={elapsed.days} />
               </section>
@@ -226,6 +268,9 @@ function MultiverseApp() {
 
             {/* Persistent Floating Music Player Dock */}
             <FloatingMusicPlayer />
+
+            {/* Mobile Bottom Quick-Dock Navigation */}
+            <MobileBottomDock />
 
             {/* Footer */}
             <footer className="w-full border-t border-white/10 bg-slate-950/80 backdrop-blur-md py-10 px-4 sm:px-6 text-center space-y-4">
@@ -240,6 +285,15 @@ function MultiverseApp() {
                 Genesis Coordinate: October 6, 2023 00:00:00 UTC // Infinite Loop Activated
               </p>
               <div className="flex items-center justify-center gap-4 text-xs text-slate-400 pt-2 font-mono">
+                <button
+                  type="button"
+                  onClick={() => setIsSecretVaultOpen(true)}
+                  className="flex items-center gap-1.5 text-rose-300/80 hover:text-rose-300 transition-colors cursor-pointer"
+                >
+                  <KeyRound className="w-3.5 h-3.5" />
+                  <span>Easter Egg Vault 🔐</span>
+                </button>
+                <span>•</span>
                 <span className="flex items-center gap-1">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
                   Zero Downtime Vow
@@ -262,3 +316,4 @@ export default function App() {
     </MusicProvider>
   );
 }
+

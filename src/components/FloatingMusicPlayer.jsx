@@ -56,7 +56,7 @@ export default function FloatingMusicPlayer() {
   return (
     <aside 
       aria-label="Audio player dock" 
-      className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 left-3 sm:left-auto z-50 flex justify-end"
+      className="fixed bottom-16 sm:bottom-6 right-3 sm:right-6 z-40 flex justify-end"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
       <AnimatePresence mode="wait">

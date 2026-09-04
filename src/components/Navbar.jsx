@@ -9,15 +9,19 @@ import {
   Clock,
   FileCode,
   Camera,
-  Music
+  Music,
+  Activity,
+  Moon
 } from 'lucide-react';
 import { sound } from '../utils/sound';
+import { haptics } from '../utils/haptics';
 import { useMusic } from '../context/MusicContext';
 
-export default function Navbar({ daysTogether, herName }) {
+export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
   const [isMuted, setIsMuted] = useState(sound.isMuted);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [tapCount, setTapCount] = useState(0);
   const { isPlaying, togglePlay } = useMusic();
 
   useEffect(() => {
@@ -36,46 +40,66 @@ export default function Navbar({ daysTogether, herName }) {
     }
   };
 
+  const handleLogoTap = (e) => {
+    e.preventDefault();
+    haptics.light();
+    sound.playChime(659.25, 0.15);
+
+    const nextCount = tapCount + 1;
+    setTapCount(nextCount);
+
+    if (nextCount >= 5) {
+      setTapCount(0);
+      haptics.easterEgg();
+      if (onOpenSecretVault) {
+        onOpenSecretVault();
+      }
+    } else {
+      // Auto-reset tap count after 2.5s of inactivity
+      setTimeout(() => {
+        setTapCount(0);
+      }, 2500);
+    }
+  };
+
   const navLinks = [
+    { label: 'Pulse', href: '#heartbeat', icon: Activity },
     { label: 'Timeline', href: '#timeline', icon: Clock },
     { label: 'Our Memories', href: '#memories', icon: Camera },
+    { label: 'The Moon', href: '#moon', icon: Moon },
     { label: 'Soundtrack', href: '#soundtrack', icon: Music },
     { label: 'Love Letters', href: '#letters', icon: Sparkles },
     { label: 'System Vows', href: '#vows', icon: FileCode },
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 px-4 sm:px-6 pt-3 pb-2 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-40 px-3 sm:px-6 pt-2.5 pb-2 transition-all duration-300">
       <div 
-        className={`max-w-6xl mx-auto rounded-2xl sm:rounded-full transition-all duration-300 px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-between border ${
+        className={`max-w-6xl mx-auto rounded-2xl sm:rounded-full transition-all duration-300 px-3.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between border ${
           isScrolled 
             ? 'glass-panel-glow border-pink-500/30 bg-slate-950/85 shadow-2xl backdrop-blur-xl' 
             : 'glass-panel border-white/10 bg-slate-950/50 backdrop-blur-md'
         }`}
       >
-        {/* Brand / Logo */}
-        <a 
-          href="#"
-          className="flex items-center gap-2.5 group cursor-pointer"
-          onClick={(e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            sound.playChime(659.25, 0.2);
-          }}
+        {/* Brand / Logo with Easter Egg Multi-Tap */}
+        <button 
+          type="button"
+          className="flex items-center gap-2 group cursor-pointer text-left relative"
+          onClick={handleLogoTap}
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center shadow-md shadow-pink-500/20 group-hover:scale-105 transition-transform">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center shadow-md shadow-pink-500/20 group-hover:scale-105 active:scale-95 transition-transform shrink-0">
             <Heart className="w-4 h-4 text-white fill-white animate-heart-beat" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs sm:text-sm font-semibold tracking-wider text-white font-display flex items-center gap-1.5">
+            <span className="text-xs sm:text-sm font-semibold tracking-wider text-white font-display flex items-center gap-1">
               <span>Arjun & {herName || 'Lechu'}</span>
               <Sparkles className="w-3 h-3 text-pink-400 opacity-70" />
             </span>
-            <span className="text-[10px] font-mono text-rose-300/80 -mt-0.5">
-              Day {daysTogether || 0} // ∞ Loop
+            <span className="text-[9px] sm:text-[10px] font-mono text-rose-300/80 -mt-0.5">
+              Day {daysTogether || 0} // ∞ Loop {tapCount > 1 && `(Tap ${tapCount}/5)`}
             </span>
           </div>
-        </a>
+        </button>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-1">
