@@ -69,7 +69,7 @@ function MultiverseApp() {
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-950 text-slate-100 selection:bg-rose-500/30 selection:text-rose-200 overflow-x-hidden font-sans">
+    <div className="relative min-h-screen bg-[#08090e] text-[#faf7f2] selection:bg-[#d96b82]/25 selection:text-[#fcdfe6] overflow-x-hidden font-sans">
       {/* Universal Starfield Background Canvas */}
       <StarfieldBackground />
 
@@ -125,26 +125,26 @@ function MultiverseApp() {
                   transition={{ delay: 0.15 }}
                   className="space-y-4 max-w-4xl mx-auto"
                 >
-                  <h1 className="text-3xl sm:text-6xl md:text-7xl font-extralight tracking-tight text-white font-display leading-tight">
-                    Architect of Our <span className="font-semibold gradient-text-romantic">Future</span>
+                  <h1 className="text-3xl sm:text-6xl md:text-7xl font-extralight tracking-tight text-[#faf7f2] font-display leading-tight">
+                    Architect of Our <span className="font-semibold gradient-text-champagne">Future</span>
                   </h1>
-                  <p className="text-slate-300/90 text-sm sm:text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
-                    A digital multiverse and eternal archive compiled for <strong className="text-white font-medium">{herName}</strong> — the woman who changed the laws of my reality.
+                  <p className="text-slate-300/85 text-sm sm:text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">
+                    A digital sanctuary and eternal archive compiled for <strong className="text-white font-medium">{herName}</strong> — the woman who gave my world its sweetest meaning.
                   </p>
                 </motion.div>
 
-                {/* Live Quantum Metric Clock */}
+                {/* Live Metric Clock */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="max-w-2xl mx-auto p-6 sm:p-8 rounded-3xl glass-panel border border-white/10 shadow-2xl relative overflow-hidden"
+                  className="max-w-2xl mx-auto p-6 sm:p-8 rounded-3xl glass-panel border border-[#e8c99b]/25 shadow-2xl relative overflow-hidden bg-[#0e121c]/80"
                 >
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-rose-500 to-transparent" />
-                  <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-slate-400 mb-4 sm:mb-5 border-b border-white/5 pb-3 gap-2">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#e8c99b] to-transparent" />
+                  <div className="flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-slate-400 mb-4 sm:mb-5 border-b border-white/8 pb-3 gap-2">
                     <span className="flex items-center gap-1.5 sm:gap-2">
-                      <Clock className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                      <span className="truncate">RUNTIME SINCE CONVERGENCE</span>
+                      <Clock className="w-3.5 h-3.5 text-[#e8c99b] shrink-0" />
+                      <span className="tracking-wider text-slate-300 uppercase">TIME SPENT IN LOVE WITH HER</span>
                     </span>
                     <span className="text-emerald-400 flex items-center gap-1.5 font-medium shrink-0">
                       <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
@@ -153,47 +153,47 @@ function MultiverseApp() {
                   </div>
 
                   <div className="grid grid-cols-4 gap-2 sm:gap-4 text-center">
-                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/8">
                       <span className="text-2xl sm:text-4xl md:text-5xl font-bold font-display text-white block">
                         {elapsed.days}
                       </span>
-                      <span className="text-[10px] sm:text-xs font-mono text-rose-300 uppercase tracking-widest mt-1 block">
+                      <span className="text-[10px] sm:text-xs font-mono text-[#e8c99b] uppercase tracking-widest mt-1 block">
                         Days
                       </span>
                     </div>
-                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/8">
                       <span className="text-2xl sm:text-4xl md:text-5xl font-bold font-display text-white block">
                         {String(elapsed.hours).padStart(2, '0')}
                       </span>
-                      <span className="text-[10px] sm:text-xs font-mono text-rose-300 uppercase tracking-widest mt-1 block">
+                      <span className="text-[10px] sm:text-xs font-mono text-[#e8c99b] uppercase tracking-widest mt-1 block">
                         Hours
                       </span>
                     </div>
-                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/8">
                       <span className="text-2xl sm:text-4xl md:text-5xl font-bold font-display text-white block">
                         {String(elapsed.minutes).padStart(2, '0')}
                       </span>
-                      <span className="text-[10px] sm:text-xs font-mono text-rose-300 uppercase tracking-widest mt-1 block">
+                      <span className="text-[10px] sm:text-xs font-mono text-[#e8c99b] uppercase tracking-widest mt-1 block">
                         Mins
                       </span>
                     </div>
-                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/5">
-                      <span className="text-2xl sm:text-4xl md:text-5xl font-bold font-display text-rose-400 block">
+                    <div className="p-3 sm:p-4 rounded-2xl bg-white/5 border border-white/8">
+                      <span className="text-2xl sm:text-4xl md:text-5xl font-bold font-display text-[#d96b82] block">
                         {String(elapsed.seconds).padStart(2, '0')}
                       </span>
-                      <span className="text-[10px] sm:text-xs font-mono text-rose-300 uppercase tracking-widest mt-1 block">
+                      <span className="text-[10px] sm:text-xs font-mono text-[#e8c99b] uppercase tracking-widest mt-1 block">
                         Secs
                       </span>
                     </div>
                   </div>
 
-                  <div className="mt-5 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400">
+                  <div className="mt-5 pt-3 border-t border-white/8 flex flex-wrap items-center justify-between gap-2 text-xs font-mono text-slate-400">
                     <span className="flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-rose-400" />
+                      <Calendar className="w-3.5 h-3.5 text-[#e8c99b]" />
                       <span>Coordinate: October 6, 2023</span>
                     </span>
-                    <span className="text-rose-300">
-                      Heart Frequency: 100% Locked On Her
+                    <span className="text-[#fcdfe6]">
+                      Heart Frequency: Bound To You Forever
                     </span>
                   </div>
                 </motion.div>
@@ -208,20 +208,20 @@ function MultiverseApp() {
                   <a
                     href="#heartbeat"
                     onClick={() => sound.playChime(659.25, 0.2)}
-                    className="px-6 py-3 rounded-full bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white text-xs sm:text-sm font-medium tracking-wide shadow-lg shadow-pink-600/30 transition-all cursor-pointer flex items-center gap-2 active:scale-95"
+                    className="px-6 py-3 rounded-full bg-gradient-to-r from-[#d96b82] to-[#b84760] hover:from-[#e08599] hover:to-[#c2546c] text-white text-xs sm:text-sm font-medium tracking-wide shadow-lg shadow-[#d96b82]/25 border border-[#e8c99b]/30 transition-all cursor-pointer flex items-center gap-2 active:scale-95"
                   >
-                    <Activity className="w-4 h-4 animate-pulse" />
+                    <Activity className="w-4 h-4 animate-pulse text-[#f5e4cb]" />
                     <span>Feel My Heartbeat</span>
                   </a>
 
                   <a
                     href="#timeline"
                     onClick={() => sound.playChime(587.33, 0.2)}
-                    className="px-5 py-3 rounded-full bg-white/10 hover:bg-white/15 border border-white/15 text-slate-200 text-xs sm:text-sm font-medium transition-all cursor-pointer flex items-center gap-2 active:scale-95"
+                    className="px-5 py-3 rounded-full bg-white/6 hover:bg-white/12 border border-[#e8c99b]/25 text-slate-200 hover:text-white text-xs sm:text-sm font-medium transition-all cursor-pointer flex items-center gap-2 active:scale-95"
                   >
-                    <Heart className="w-4 h-4 text-rose-400" />
+                    <Heart className="w-4 h-4 text-[#d96b82]" />
                     <span>Explore Our Story</span>
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4 text-slate-400" />
                   </a>
                 </motion.div>
               </section>
@@ -246,10 +246,10 @@ function MultiverseApp() {
                 <MoonPhaseSection herName={herName} />
               </section>
 
-              {/* 5. Romantic Cosmic Soundtrack Section */}
+              {/* 5. Romantic Soundtrack Section */}
               <MusicSection herName={herName} />
 
-              {/* 6. Tinder-Style Infinite Reasons Why I Love You Card Deck */}
+              {/* 6. Swipeable Reasons Why I Love You Card Deck */}
               <section id="reasons" className="scroll-mt-28">
                 <ReasonsDeck herName={herName} />
               </section>
@@ -273,22 +273,22 @@ function MultiverseApp() {
             <MobileBottomDock />
 
             {/* Footer */}
-            <footer className="w-full border-t border-white/10 bg-slate-950/80 backdrop-blur-md py-10 px-4 sm:px-6 text-center space-y-4">
-              <div className="flex items-center justify-center gap-2 text-rose-400">
-                <Heart className="w-5 h-5 fill-rose-500 animate-heart-beat" />
-                <InfinityIcon className="w-5 h-5 text-amber-300" />
+            <footer className="w-full border-t border-white/8 bg-[#08090e]/90 backdrop-blur-md py-10 px-4 sm:px-6 text-center space-y-4">
+              <div className="flex items-center justify-center gap-2">
+                <Heart className="w-5 h-5 fill-[#d96b82] text-[#d96b82] animate-heart-beat" />
+                <InfinityIcon className="w-5 h-5 text-[#e8c99b]" />
               </div>
               <p className="text-sm font-display text-slate-200">
-                Compiled with infinite devotion by Arjun for his <strong className="text-rose-300">{herName}</strong>
+                Compiled with infinite devotion by Arjun for his <strong className="text-[#e8c99b]">{herName}</strong>
               </p>
               <p className="text-xs font-mono text-slate-500">
-                Genesis Coordinate: October 6, 2023 00:00:00 UTC // Infinite Loop Activated
+                Genesis Coordinate: October 6, 2023 • Eternal Love Unbroken
               </p>
               <div className="flex items-center justify-center gap-4 text-xs text-slate-400 pt-2 font-mono">
                 <button
                   type="button"
                   onClick={() => setIsSecretVaultOpen(true)}
-                  className="flex items-center gap-1.5 text-rose-300/80 hover:text-rose-300 transition-colors cursor-pointer"
+                  className="flex items-center gap-1.5 text-[#e8c99b]/90 hover:text-[#e8c99b] transition-colors cursor-pointer"
                 >
                   <KeyRound className="w-3.5 h-3.5" />
                   <span>Easter Egg Vault 🔐</span>
@@ -316,4 +316,3 @@ export default function App() {
     </MusicProvider>
   );
 }
-

@@ -13,62 +13,62 @@ export default function Timeline({ herName }) {
   const milestones = [
     {
       date: 'October 6, 2023',
-      badge: 'Genesis Coordinate',
-      title: 'The Spark: When The Universe Changed',
-      subtitle: 'The Moment Life Found Its Anchor',
+      badge: 'The First Spark',
+      title: 'When My Entire World Changed',
+      subtitle: 'The day you walked into my life',
       description:
-        'The day you entered my reality. Before this date, time was just sequential noise; from this moment onward, every second became purposeful. You weren’t just a person who walked in; you became my home.',
-      tags: ['First Chapter', 'Destiny Initialized', 'Coordinate 10-06-2023'],
+        'The unforgettable day you entered my reality. Before this date, time was just passing by; from this moment onward, every day found its purpose. You didn’t just enter my life; you became my home.',
+      tags: ['Our First Chapter', 'October 6, 2023', 'Best Day of My Life'],
       icon: Flame,
-      color: 'from-amber-400 to-rose-500',
+      color: 'from-[#e8c99b] to-[#d96b82]',
       active: true,
     },
     {
       date: 'The Unfolding Journey',
-      badge: 'Deepening Ties',
-      title: 'Late Night Talks & Silent Synchrony',
-      subtitle: 'Building the Foundation of Peace',
+      badge: 'Late Night Talks',
+      title: 'Hours That Turned Into Minutes',
+      subtitle: 'Falling in love with who you are',
       description:
-        'Hours turning into minutes. Discovering that behind your warmth is a brilliant, caring, unbreakable soul. You listened to my biggest dreams, calmed my fiercest anxieties, and showed me what true loyalty feels like.',
-      tags: ['Unconditional Care', 'Safe Harbor', 'Total Trust'],
+        'Discovering that behind your bright smile is the sweetest, kindest, and most caring soul I have ever known. You listened to my wildest dreams, stood by me on hard days, and showed me what true love really feels like.',
+      tags: ['Heart-to-Heart Talks', 'Unconditional Care', 'My Safe Place'],
       icon: Compass,
-      color: 'from-pink-500 to-purple-500',
+      color: 'from-[#d96b82] to-[#798cb7]',
       active: true,
     },
     {
       date: 'Today & Every Day',
-      badge: 'Current Runtime',
-      title: 'My Greatest Support System & Best Friend',
-      subtitle: 'Architect of My Peace',
+      badge: 'My Greatest Anchor',
+      title: 'My Best Friend & Biggest Supporter',
+      subtitle: 'Waking up grateful for you',
       description:
-        'Every single morning begins with gratitude for you. Through work deadlines, complex builds, and daily hurdles, knowing you believe in me turns every obstacle into victory. You take care of my heart better than anyone ever could.',
-      tags: ['Living Miracle', 'Pillar of Strength', 'Unrivaled Partner'],
+        'Every single morning begins with gratitude for you. Through work deadlines, late nights, and everyday hurdles, knowing you believe in me turns every challenge into joy. You take care of my heart better than anyone ever could.',
+      tags: ['My Peace', 'Best Friend', 'Unmatched Partner'],
       icon: Heart,
-      color: 'from-rose-500 to-pink-500',
+      color: 'from-[#d96b82] to-[#e8c99b]',
       active: true,
     },
     {
       date: 'The Horizon',
-      badge: 'Pre-Compiled Future',
-      title: 'Our Next Dimension: A Shared Home',
-      subtitle: 'Designing Our Haven',
+      badge: 'Our Future Dream',
+      title: 'A Home Full of Laughter & Warmth',
+      subtitle: 'Building our life side by side',
       description:
-        'Waking up under the same roof. Coffee brewed together in the quiet morning light. Traveling the world hand-in-hand, laughing at silly inside jokes, and building a sanctuary of warmth, laughter, and joy.',
-      tags: ['Our Sanctuary', 'Forever Memories', 'Shared Dreams'],
+        'Waking up under the same roof. Coffee brewed together in the quiet morning light. Traveling to places we’ve dreamed about, laughing at our silly inside jokes, and building a sanctuary of pure warmth and happiness.',
+      tags: ['Our Sanctuary', 'Traveling Together', 'Shared Dreams'],
       icon: Home,
-      color: 'from-purple-500 to-indigo-500',
+      color: 'from-[#798cb7] to-[#e8c99b]',
       active: true,
     },
     {
       date: 'The Forever (∞)',
-      badge: 'Forever Reality',
-      title: 'The Future: My Wife',
-      subtitle: 'The Vow of Eternity',
+      badge: 'My Forever Wife',
+      title: 'To the Love of My Life',
+      subtitle: 'A promise for a lifetime',
       description:
-        'Walking down the aisle to meet the woman who holds my entire soul. Looking into your eyes and promising you every beat of my heart, every bit of my strength, and a lifetime of being your fierce protector and deepest admirer. Forever and ever.',
-      tags: ['Until The End of Time', 'My Forever Wife', 'Infinite Loop of Love'],
+        'Walking down the aisle to meet the woman who holds my entire heart. Looking into your eyes and promising you every beat of my heart, every bit of my strength, and a lifetime of being your biggest cheerleader and devoted partner. Forever and always.',
+      tags: ['Until The End of Time', 'My Future Wife', 'Forever Yours'],
       icon: InfinityIcon,
-      color: 'from-amber-300 via-rose-400 to-indigo-400',
+      color: 'from-[#e8c99b] via-[#d96b82] to-[#c49257]',
       highlight: true,
       active: true,
     },
@@ -78,22 +78,22 @@ export default function Timeline({ herName }) {
     <div className="relative w-full space-y-12">
       {/* Section Header */}
       <div className="text-center max-w-2xl mx-auto space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-mono tracking-wider">
-          <Clock className="w-3.5 h-3.5 text-rose-400" />
-          <span>CHRONO-SPATIAL TRAJECTORY</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e8c99b]/15 border border-[#e8c99b]/30 text-[#e8c99b] text-xs font-mono tracking-wider">
+          <Clock className="w-3.5 h-3.5 text-[#e8c99b]" />
+          <span>OUR STORY IN CHAPTERS</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-light text-white font-display">
-          The <span className="font-semibold gradient-text-romantic">Arjun & {herName || 'Lechu'}</span> Timeline
+        <h2 className="text-2xl sm:text-4xl font-light text-[#faf7f2] font-display">
+          The <span className="font-semibold gradient-text-champagne">Arjun & {herName || 'Lechu'}</span> Story
         </h2>
-        <p className="text-slate-400 text-xs sm:text-sm font-light leading-relaxed">
-          From the initial quantum spark on October 6, 2023, tracing an unbroken trajectory into infinity (∞).
+        <p className="text-slate-300/85 text-xs sm:text-sm font-light leading-relaxed">
+          From the first spark on October 6, 2023, tracing our path through every shared smile into eternity.
         </p>
       </div>
 
       {/* Vertical Chrono Track */}
       <div className="relative max-w-4xl mx-auto px-2 sm:px-0">
         {/* Central glowing vertical timeline beam */}
-        <div className="absolute left-5 sm:left-1/2 top-4 bottom-4 -translate-x-1/2 w-0.5 bg-gradient-to-b from-rose-500 via-purple-500 to-amber-300 shadow-[0_0_15px_rgba(244,63,94,0.5)]" />
+        <div className="absolute left-5 sm:left-1/2 top-4 bottom-4 -translate-x-1/2 w-0.5 bg-gradient-to-b from-[#d96b82] via-[#e8c99b] to-[#c49257] shadow-[0_0_15px_rgba(232,201,155,0.4)]" />
 
         <div className="space-y-8 sm:space-y-16">
           {milestones.map((milestone, idx) => {
@@ -116,13 +116,13 @@ export default function Timeline({ herName }) {
                   <div
                     className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full flex items-center justify-center p-2 border shadow-lg backdrop-blur-md transition-transform ${
                       milestone.highlight
-                        ? 'bg-gradient-to-tr from-amber-400 via-rose-500 to-indigo-500 border-amber-300 shadow-rose-500/40 ring-4 ring-rose-500/20 animate-pulse'
-                        : 'bg-slate-900 border-rose-500/40 shadow-black'
+                        ? 'bg-gradient-to-tr from-[#e8c99b] via-[#d96b82] to-[#798cb7] border-[#faf7f2] shadow-[#d96b82]/40 ring-4 ring-[#e8c99b]/25 animate-pulse'
+                        : 'bg-[#0e121c] border-[#e8c99b]/40 shadow-black'
                     }`}
                   >
                     <Icon
                       className={`w-4 h-4 sm:w-5 sm:h-5 ${
-                        milestone.highlight ? 'text-white' : 'text-rose-400'
+                        milestone.highlight ? 'text-white' : 'text-[#e8c99b]'
                       }`}
                     />
                   </div>
@@ -137,8 +137,8 @@ export default function Timeline({ herName }) {
                   <div
                     className={`p-4 sm:p-7 rounded-2xl sm:rounded-3xl transition-all duration-300 ${
                       milestone.highlight
-                        ? 'glass-panel-glow border border-amber-400/40 shadow-2xl shadow-rose-500/15'
-                        : 'glass-panel border border-white/10 hover:border-rose-500/30'
+                        ? 'glass-panel-glow border border-[#e8c99b]/45 shadow-2xl shadow-black/80 bg-[#121624]/90'
+                        : 'glass-panel border border-white/10 hover:border-[#e8c99b]/30 bg-[#0e121c]/80'
                     }`}
                   >
                     {/* Date and Badge */}
@@ -147,7 +147,7 @@ export default function Timeline({ herName }) {
                         isEven ? 'sm:justify-end' : 'sm:justify-start'
                       }`}
                     >
-                      <span className="text-[11px] sm:text-xs font-mono text-rose-300 font-semibold px-2.5 py-0.5 sm:py-1 rounded-full bg-rose-500/15 border border-rose-500/30">
+                      <span className="text-[11px] sm:text-xs font-mono text-[#e8c99b] font-semibold px-2.5 py-0.5 sm:py-1 rounded-full bg-[#e8c99b]/15 border border-[#e8c99b]/35">
                         {milestone.date}
                       </span>
                       <span className="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase tracking-wider">
@@ -163,7 +163,7 @@ export default function Timeline({ herName }) {
                     >
                       {milestone.title}
                     </h3>
-                    <div className="text-xs text-rose-400/90 font-medium mb-2 sm:mb-3">
+                    <div className="text-xs text-[#d96b82] font-medium mb-2 sm:mb-3">
                       {milestone.subtitle}
                     </div>
 
@@ -181,7 +181,7 @@ export default function Timeline({ herName }) {
                       {milestone.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-400"
+                          className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-slate-300"
                         >
                           #{tag}
                         </span>
@@ -197,9 +197,9 @@ export default function Timeline({ herName }) {
 
       {/* Eternity Inscription Footer */}
       <div className="text-center pt-4 sm:pt-6 px-2">
-        <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full glass-panel border border-amber-300/30 text-amber-200 text-xs sm:text-sm font-display tracking-wider uppercase max-w-full flex-wrap justify-center shadow-lg">
-          <InfinityIcon className="w-4 h-4 sm:w-5 sm:h-5 text-amber-300 animate-spin shrink-0" style={{ animationDuration: '12s' }} />
-          <span className="text-center">Timeline Status: Infinite Loop Executing For You</span>
+        <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full glass-panel border border-[#e8c99b]/35 text-[#f3e8d0] text-xs sm:text-sm font-display tracking-wider uppercase max-w-full flex-wrap justify-center shadow-lg bg-[#0e121c]/85">
+          <InfinityIcon className="w-4 h-4 sm:w-5 sm:h-5 text-[#e8c99b] animate-spin shrink-0" style={{ animationDuration: '14s' }} />
+          <span className="text-center">Timeline Status: An Infinite Love That Never Ends</span>
         </div>
       </div>
     </div>

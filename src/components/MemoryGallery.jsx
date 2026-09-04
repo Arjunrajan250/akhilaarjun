@@ -100,7 +100,7 @@ export default function MemoryGallery({ herName }) {
         x: e.clientX ? e.clientX / window.innerWidth : 0.5,
         y: e.clientY ? e.clientY / window.innerHeight : 0.5,
       },
-      colors: ['#ec4899', '#f43f5e', '#fb7185', '#fda4af', '#fbbf24'],
+      colors: ['#d96b82', '#e8c99b', '#f5e4cb', '#798cb7'],
     });
   };
 
@@ -136,7 +136,7 @@ export default function MemoryGallery({ herName }) {
       particleCount: 60,
       spread: 90,
       origin: { x: 0.5, y: 0.4 },
-      colors: ['#f43f5e', '#a855f7', '#fbbf24', '#38bdf8'],
+      colors: ['#d96b82', '#e8c99b', '#f5e4cb', '#798cb7'],
     });
   };
 
@@ -172,39 +172,39 @@ export default function MemoryGallery({ herName }) {
     <div className="relative w-full space-y-10">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-mono tracking-wider shadow-sm">
-          <Camera className="w-3.5 h-3.5 text-rose-400" />
-          <span>VISUAL CHRONICLES // 50+ ETERNAL MEMORIES ARCHIVE</span>
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e8c99b]/15 border border-[#e8c99b]/30 text-[#e8c99b] text-xs font-mono tracking-wider shadow-sm">
+          <Camera className="w-3.5 h-3.5 text-[#e8c99b]" />
+          <span>VISUAL CHRONICLES // ETERNAL MEMORIES ARCHIVE</span>
         </div>
 
-        <h2 className="text-3xl sm:text-5xl font-light text-white font-display">
-          Our <span className="font-semibold gradient-text-romantic">Memory Constellation</span>
+        <h2 className="text-3xl sm:text-5xl font-light text-[#faf7f2] font-display">
+          Our <span className="font-semibold gradient-text-champagne">Memory Constellation</span>
         </h2>
 
-        <p className="text-slate-300/90 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
+        <p className="text-slate-300/85 text-sm sm:text-base font-light leading-relaxed max-w-2xl mx-auto">
           Every frozen frame is an eternal coordinate of our universe. Captured and compiled for{' '}
           <strong className="text-white font-medium">{herName || 'Lechu'}</strong>.
         </p>
 
         {/* Live Archive Metrics Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-4 pt-2 text-xs font-mono text-slate-400">
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/5">
-            <Sparkle className="w-3.5 h-3.5 text-pink-400" />
+        <div className="flex flex-wrap items-center justify-center gap-3 pt-2 text-xs font-mono text-slate-400">
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/8">
+            <Sparkle className="w-3.5 h-3.5 text-[#e8c99b]" />
             <strong className="text-white font-semibold">{filteredMemories.length}</strong> Memories Loaded
           </span>
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300">
-            <Heart className="w-3.5 h-3.5 fill-rose-400 text-rose-400" />
-            <strong className="text-rose-200 font-semibold">{totalHearts}</strong> Hearts Given
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#d96b82]/15 border border-[#d96b82]/30 text-[#fcdfe6]">
+            <Heart className="w-3.5 h-3.5 fill-[#d96b82] text-[#d96b82]" />
+            <strong className="text-white font-semibold">{totalHearts}</strong> Hearts Given
           </span>
-          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/5">
-            <Calendar className="w-3.5 h-3.5 text-amber-300" />
+          <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/8">
+            <Calendar className="w-3.5 h-3.5 text-[#e8c99b]" />
             Oct 2023 - Forever
           </span>
         </div>
       </div>
 
       {/* Control Center: Search, View Mode, Surprise Me & Slideshow */}
-      <div className="p-4 sm:p-5 rounded-3xl glass-panel border border-white/10 shadow-xl space-y-4 max-w-5xl mx-auto">
+      <div className="p-4 sm:p-5 rounded-3xl glass-panel border border-[#e8c99b]/20 shadow-xl space-y-4 max-w-5xl mx-auto bg-[#0e121c]/80">
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
           
           {/* Live Search Input */}
@@ -218,7 +218,7 @@ export default function MemoryGallery({ herName }) {
                 setVisibleCount(INITIAL_DISPLAY_COUNT);
               }}
               placeholder="Search by moment, location, or memory..."
-              className="w-full pl-10 pr-9 py-2.5 rounded-full bg-slate-950/60 border border-white/15 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-400 focus:ring-1 focus:ring-rose-400/50 transition-all"
+              className="w-full pl-10 pr-9 py-2.5 rounded-full bg-[#08090e]/70 border border-white/15 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#e8c99b] focus:ring-1 focus:ring-[#e8c99b]/40 transition-all"
             />
             {searchQuery && (
               <button
@@ -237,9 +237,9 @@ export default function MemoryGallery({ herName }) {
             <button
               type="button"
               onClick={handleSurpriseMe}
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-amber-500/20 to-rose-500/20 border border-amber-400/40 hover:border-amber-400 text-amber-200 hover:text-amber-100 text-xs font-medium transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-gradient-to-r from-[#e8c99b]/20 to-[#d96b82]/20 border border-[#e8c99b]/40 hover:border-[#e8c99b] text-[#f5e4cb] hover:text-white text-xs font-medium transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
             >
-              <Shuffle className="w-3.5 h-3.5 text-amber-300 animate-spin-slow" />
+              <Shuffle className="w-3.5 h-3.5 text-[#e8c99b] animate-spin-slow" />
               <span>Surprise Me</span>
             </button>
 
@@ -252,14 +252,14 @@ export default function MemoryGallery({ herName }) {
                 setIsSlideshowPlaying(true);
                 sound.playChime(660, 0.3, 'sine');
               }}
-              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-rose-500/20 border border-rose-500/40 hover:border-rose-400 text-rose-200 hover:text-white text-xs font-medium transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-full bg-[#d96b82]/20 border border-[#d96b82]/40 hover:border-[#e8c99b] text-[#fcdfe6] hover:text-white text-xs font-medium transition-all shadow-md cursor-pointer hover:scale-105 active:scale-95"
             >
-              <Play className="w-3.5 h-3.5 fill-rose-400 text-rose-400" />
+              <Play className="w-3.5 h-3.5 fill-[#d96b82] text-[#d96b82]" />
               <span>Slideshow</span>
             </button>
 
             {/* View Mode Toggle: Polaroid vs Compact */}
-            <div className="flex items-center p-1 rounded-full bg-slate-950/70 border border-white/10">
+            <div className="flex items-center p-1 rounded-full bg-[#08090e]/80 border border-white/10">
               <button
                 type="button"
                 onClick={() => {
@@ -269,7 +269,7 @@ export default function MemoryGallery({ herName }) {
                 title="Polaroid Grid View"
                 className={`p-2 rounded-full transition-all cursor-pointer ${
                   viewMode === 'polaroid'
-                    ? 'bg-rose-500 text-white shadow'
+                    ? 'bg-[#d96b82] text-white shadow'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -284,7 +284,7 @@ export default function MemoryGallery({ herName }) {
                 title="Compact Masonry View"
                 className={`p-2 rounded-full transition-all cursor-pointer ${
                   viewMode === 'compact'
-                    ? 'bg-rose-500 text-white shadow'
+                    ? 'bg-[#d96b82] text-white shadow'
                     : 'text-slate-400 hover:text-white'
                 }`}
               >
@@ -295,9 +295,9 @@ export default function MemoryGallery({ herName }) {
         </div>
 
         {/* Year Filter Chips */}
-        <div className="flex items-center gap-2 pt-2 border-t border-white/5 flex-wrap">
+        <div className="flex items-center gap-2 pt-2 border-t border-white/8 flex-wrap">
           <span className="text-[11px] font-mono text-slate-400 mr-1 flex items-center gap-1">
-            <Clock className="w-3 h-3 text-rose-400" />
+            <Clock className="w-3 h-3 text-[#e8c99b]" />
             Epoch:
           </span>
           {YEARS.map((yr) => (
@@ -311,7 +311,7 @@ export default function MemoryGallery({ herName }) {
               }}
               className={`px-3 py-1 rounded-full text-xs font-mono transition-all cursor-pointer ${
                 activeYear === yr
-                  ? 'bg-rose-500/30 text-rose-200 border border-rose-500 font-semibold'
+                  ? 'bg-[#e8c99b]/25 text-[#f5e4cb] border border-[#e8c99b] font-semibold'
                   : 'bg-white/5 text-slate-400 hover:text-white border border-transparent'
               }`}
             >
@@ -333,7 +333,7 @@ export default function MemoryGallery({ herName }) {
               }}
               className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                 activeCategory === cat.id
-                  ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30 scale-105'
+                  ? 'bg-gradient-to-r from-[#d96b82] to-[#b84760] text-white shadow-lg shadow-[#d96b82]/25 scale-105 border border-[#e8c99b]/30'
                   : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
               }`}
             >
@@ -346,7 +346,7 @@ export default function MemoryGallery({ herName }) {
       {/* Zero Results State */}
       {filteredMemories.length === 0 && (
         <div className="p-12 text-center rounded-3xl glass-panel border border-white/10 space-y-4 max-w-lg mx-auto">
-          <Sparkles className="w-8 h-8 text-rose-400 mx-auto animate-pulse" />
+          <Sparkles className="w-8 h-8 text-[#e8c99b] mx-auto animate-pulse" />
           <h3 className="text-lg font-medium text-white">No constellations match your search</h3>
           <p className="text-xs text-slate-400">
             Try clearing your search query or selecting a different year or category.
@@ -358,7 +358,7 @@ export default function MemoryGallery({ herName }) {
               setActiveCategory('all');
               setActiveYear('all');
             }}
-            className="px-4 py-2 rounded-full bg-rose-500 text-white text-xs font-medium cursor-pointer hover:bg-rose-600 transition-colors"
+            className="px-4 py-2 rounded-full bg-[#d96b82] text-white text-xs font-medium cursor-pointer hover:bg-[#c2546c] transition-colors"
           >
             Reset All Filters
           </button>
@@ -369,7 +369,7 @@ export default function MemoryGallery({ herName }) {
       {displayedMemories.length > 0 && (
         <>
           {viewMode === 'polaroid' ? (
-            /* Polaroid View: Realistic tilted cards with pins */
+            /* Polaroid View: Realistic tilted cards with antique pins */
             <motion.div 
               layout
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 pt-2"
@@ -396,14 +396,14 @@ export default function MemoryGallery({ herName }) {
                       className="group relative cursor-pointer"
                     >
                       {/* Polaroid Frame */}
-                      <div className="p-4 sm:p-5 rounded-3xl glass-panel-glow border border-pink-500/20 bg-slate-900/75 hover:border-pink-400/50 shadow-2xl transition-all duration-300">
+                      <div className="p-4 sm:p-5 rounded-3xl glass-panel border border-[#e8c99b]/25 bg-[#0e121c]/85 hover:border-[#e8c99b]/55 shadow-2xl transition-all duration-300">
                         {/* Polaroid Pin */}
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-tr from-amber-300 via-rose-300 to-pink-400 shadow-md border border-white/40 flex items-center justify-center">
-                          <div className="w-2 h-2 rounded-full bg-slate-950/60" />
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-tr from-[#f5e4cb] via-[#e8c99b] to-[#d4a373] shadow-md border border-white/50 flex items-center justify-center">
+                          <div className="w-2 h-2 rounded-full bg-[#08090e]/70" />
                         </div>
 
                         {/* Photo Image Canvas */}
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-950/80 mb-4 border border-white/10">
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#08090e] mb-4 border border-white/10">
                           <img
                             src={photo.src}
                             alt={photo.title}
@@ -412,18 +412,18 @@ export default function MemoryGallery({ herName }) {
                           />
 
                           {/* Top Right Quick Expand Indicator */}
-                          <div className="absolute top-3 right-3 p-2 rounded-full bg-slate-950/60 backdrop-blur-md border border-white/20 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                          <div className="absolute top-3 right-3 p-2 rounded-full bg-[#08090e]/70 backdrop-blur-md border border-white/20 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
                             <Maximize2 className="w-3.5 h-3.5" />
                           </div>
 
                           {/* Bottom Floating Location Badge */}
-                          <div className="absolute bottom-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-slate-950/70 backdrop-blur-md border border-white/15 text-[11px] font-mono text-slate-200">
-                            <MapPin className="w-3 h-3 text-rose-400" />
+                          <div className="absolute bottom-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#08090e]/75 backdrop-blur-md border border-white/15 text-[11px] font-mono text-slate-200">
+                            <MapPin className="w-3 h-3 text-[#e8c99b]" />
                             <span>{photo.location}</span>
                           </div>
 
                           {/* Index Badge */}
-                          <div className="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-slate-950/70 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
+                          <div className="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-[#08090e]/75 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
                             #{photo.id}
                           </div>
                         </div>
@@ -432,10 +432,10 @@ export default function MemoryGallery({ herName }) {
                         <div className="space-y-2 px-1">
                           <div className="flex items-start justify-between gap-2">
                             <div>
-                              <h3 className="text-base sm:text-lg font-medium text-white font-display tracking-tight group-hover:text-rose-200 transition-colors line-clamp-1">
+                              <h3 className="text-base sm:text-lg font-medium text-white font-display tracking-tight group-hover:text-[#f5e4cb] transition-colors line-clamp-1">
                                 {photo.title}
                               </h3>
-                              <p className="text-xs text-rose-300/80 italic font-serif line-clamp-1">
+                              <p className="text-xs text-[#e8c99b]/90 italic font-serif line-clamp-1">
                                 "{photo.subtitle}"
                               </p>
                             </div>
@@ -448,29 +448,29 @@ export default function MemoryGallery({ herName }) {
                               title="Click to send love"
                               className={`p-2 rounded-full border transition-all cursor-pointer shrink-0 ${
                                 isLiked
-                                  ? 'bg-rose-500/30 border-rose-500 text-rose-400 scale-110'
-                                  : 'bg-white/5 border-white/10 text-slate-400 hover:text-rose-300 hover:bg-rose-500/20'
+                                  ? 'bg-[#d96b82]/30 border-[#d96b82] text-[#d96b82] scale-110'
+                                  : 'bg-white/5 border-white/10 text-slate-400 hover:text-[#fcdfe6] hover:bg-[#d96b82]/20'
                               }`}
                             >
                               <Heart
                                 className={`w-4 h-4 ${
-                                  isLiked ? 'fill-rose-500 text-rose-500 animate-heart-beat' : ''
+                                  isLiked ? 'fill-[#d96b82] text-[#d96b82] animate-heart-beat' : ''
                                 }`}
                               />
                             </button>
                           </div>
 
-                          <p className="text-xs text-slate-300/80 font-light line-clamp-2 leading-relaxed">
+                          <p className="text-xs text-slate-300/85 font-light line-clamp-2 leading-relaxed">
                             {photo.story}
                           </p>
 
-                          <div className="flex items-center justify-between pt-2 border-t border-white/5 text-[10px] font-mono text-slate-400">
+                          <div className="flex items-center justify-between pt-2 border-t border-white/8 text-[10px] font-mono text-slate-400">
                             <span className="flex items-center gap-1">
-                              <Calendar className="w-3 h-3 text-rose-400" />
+                              <Calendar className="w-3 h-3 text-[#e8c99b]" />
                               {photo.date}
                             </span>
                             {(likedPhotos[photo.id] || 0) > 0 && (
-                              <span className="text-rose-300 font-medium">
+                              <span className="text-[#e8c99b] font-medium">
                                 ❤️ {likedPhotos[photo.id]} Loved
                               </span>
                             )}
@@ -483,7 +483,7 @@ export default function MemoryGallery({ herName }) {
               </AnimatePresence>
             </motion.div>
           ) : (
-            /* Compact Masonry View: High-density sleek modern card wall */
+            /* Compact Masonry View */
             <motion.div 
               layout
               className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 pt-2"
@@ -501,32 +501,32 @@ export default function MemoryGallery({ herName }) {
                       transition={{ duration: 0.3 }}
                       whileHover={{ y: -6 }}
                       onClick={() => handleOpenLightbox(idx)}
-                      className="group relative rounded-2xl overflow-hidden glass-panel border border-white/10 hover:border-pink-400/40 shadow-xl cursor-pointer"
+                      className="group relative rounded-2xl overflow-hidden glass-panel border border-white/10 hover:border-[#e8c99b]/40 shadow-xl cursor-pointer"
                     >
-                      <div className="relative aspect-[4/3] bg-slate-950">
+                      <div className="relative aspect-[4/3] bg-[#08090e]">
                         <img
                           src={photo.src}
                           alt={photo.title}
                           loading="lazy"
                           className="w-full h-full object-cover group-hover:scale-106 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#08090e]/90 via-[#08090e]/30 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
                         
                         {/* Heart Button Overlay */}
                         <button
                           type="button"
                           onClick={(e) => handleLike(e, photo.id)}
-                          className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-slate-950/70 backdrop-blur-md border border-white/15 text-slate-300 hover:text-rose-400 transition-colors"
+                          className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-[#08090e]/70 backdrop-blur-md border border-white/15 text-slate-300 hover:text-[#d96b82] transition-colors"
                         >
-                          <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-rose-500 text-rose-500' : ''}`} />
+                          <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-[#d96b82] text-[#d96b82]' : ''}`} />
                         </button>
 
                         <div className="absolute bottom-2.5 left-2.5 right-2.5 space-y-0.5">
-                          <h4 className="text-xs sm:text-sm font-medium text-white line-clamp-1 group-hover:text-rose-200">
+                          <h4 className="text-xs sm:text-sm font-medium text-white line-clamp-1 group-hover:text-[#f5e4cb]">
                             {photo.title}
                           </h4>
                           <p className="text-[10px] text-slate-400 font-mono flex items-center gap-1">
-                            <MapPin className="w-2.5 h-2.5 text-rose-400" />
+                            <MapPin className="w-2.5 h-2.5 text-[#e8c99b]" />
                             {photo.location}
                           </p>
                         </div>
@@ -548,7 +548,7 @@ export default function MemoryGallery({ herName }) {
               </div>
               <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-pink-500 to-rose-500 transition-all duration-500"
+                  className="h-full bg-gradient-to-r from-[#d96b82] via-[#e8c99b] to-[#f5e4cb] transition-all duration-500"
                   style={{ width: `${(displayedMemories.length / filteredMemories.length) * 100}%` }}
                 />
               </div>
@@ -559,9 +559,9 @@ export default function MemoryGallery({ herName }) {
                 <button
                   type="button"
                   onClick={handleLoadMore}
-                  className="px-6 py-3 rounded-full bg-white/10 hover:bg-rose-500/20 border border-white/20 hover:border-rose-500/50 text-white text-xs sm:text-sm font-medium transition-all shadow-lg hover:shadow-rose-500/20 cursor-pointer flex items-center gap-2"
+                  className="px-6 py-3 rounded-full bg-white/8 hover:bg-[#d96b82]/20 border border-[#e8c99b]/30 hover:border-[#e8c99b] text-white text-xs sm:text-sm font-medium transition-all shadow-lg hover:shadow-[#d96b82]/20 cursor-pointer flex items-center gap-2"
                 >
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className="w-4 h-4 text-[#e8c99b]" />
                   <span>Reveal 12 More Memories</span>
                 </button>
                 <button
@@ -573,9 +573,9 @@ export default function MemoryGallery({ herName }) {
                 </button>
               </div>
             ) : (
-              <div className="text-xs font-mono text-slate-500 pt-2 flex items-center justify-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-pink-400" />
-                <span>All {filteredMemories.length} coordinates displayed // Infinitely expanding</span>
+              <div className="text-xs font-mono text-slate-400 pt-2 flex items-center justify-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#e8c99b]" />
+                <span>All {filteredMemories.length} coordinates displayed • Memory Archive Complete</span>
               </div>
             )}
           </div>
@@ -590,7 +590,7 @@ export default function MemoryGallery({ herName }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleCloseLightbox}
-            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/95 backdrop-blur-2xl overflow-y-auto"
+            className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-[#08090e]/95 backdrop-blur-2xl overflow-y-auto"
           >
             {/* Modal Card */}
             <motion.div
@@ -599,12 +599,12 @@ export default function MemoryGallery({ herName }) {
               exit={{ scale: 0.92, y: 20 }}
               transition={{ type: 'spring', damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl glass-panel-glow border border-pink-500/30 overflow-hidden shadow-2xl bg-slate-900/95 my-auto"
+              className="relative w-full max-w-4xl max-h-[92vh] flex flex-col rounded-3xl glass-panel-glow border border-[#e8c99b]/35 overflow-hidden shadow-2xl bg-[#0e121c]/95 my-auto"
             >
               {/* Top Bar Controls */}
-              <div className="p-3.5 sm:p-5 border-b border-white/10 flex items-center justify-between bg-slate-950/60 shrink-0">
-                <div className="flex items-center gap-2 text-rose-300 font-mono text-[11px] sm:text-xs truncate">
-                  <Sparkles className="w-3.5 h-3.5 text-pink-400 animate-pulse shrink-0" />
+              <div className="p-3.5 sm:p-5 border-b border-white/8 flex items-center justify-between bg-[#08090e]/60 shrink-0">
+                <div className="flex items-center gap-2 text-[#e8c99b] font-mono text-[11px] sm:text-xs truncate">
+                  <Sparkles className="w-3.5 h-3.5 text-[#e8c99b] animate-pulse shrink-0" />
                   <span className="truncate">#{filteredMemories[selectedPhotoIndex].id} ({selectedPhotoIndex + 1}/{filteredMemories.length})</span>
                 </div>
 
@@ -612,9 +612,9 @@ export default function MemoryGallery({ herName }) {
                   <button
                     type="button"
                     onClick={(e) => handleLike(e, filteredMemories[selectedPhotoIndex].id)}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-rose-500/20 border border-rose-500/40 text-rose-200 text-xs font-medium cursor-pointer hover:bg-rose-500/30 transition-all active:scale-95"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#d96b82]/25 border border-[#d96b82]/50 text-[#fcdfe6] text-xs font-medium cursor-pointer hover:bg-[#d96b82]/35 transition-all active:scale-95"
                   >
-                    <Heart className="w-3.5 h-3.5 fill-rose-400 text-rose-400" />
+                    <Heart className="w-3.5 h-3.5 fill-[#d96b82] text-[#d96b82]" />
                     <span>
                       {likedPhotos[filteredMemories[selectedPhotoIndex].id] || 0}
                     </span>
@@ -635,7 +635,7 @@ export default function MemoryGallery({ herName }) {
               <div className="grid grid-cols-1 md:grid-cols-12 gap-0 overflow-y-auto flex-1 custom-scrollbar">
                 {/* Photo Display View with Touch Swipe */}
                 <div 
-                  className="relative md:col-span-7 bg-slate-950 flex items-center justify-center p-3 sm:p-6 min-h-[260px] sm:min-h-[440px] touch-pan-y"
+                  className="relative md:col-span-7 bg-[#08090e] flex items-center justify-center p-3 sm:p-6 min-h-[260px] sm:min-h-[440px] touch-pan-y"
                   onTouchStart={(e) => {
                     window._lightboxTouchStartX = e.changedTouches[0].clientX;
                   }}
@@ -662,7 +662,7 @@ export default function MemoryGallery({ herName }) {
                     type="button"
                     onClick={handlePrev}
                     aria-label="Previous photo"
-                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
+                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
@@ -670,31 +670,31 @@ export default function MemoryGallery({ herName }) {
                     type="button"
                     onClick={handleNext}
                     aria-label="Next photo"
-                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
+                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
 
-                {/* Romantic Story Detail View */}
-                <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-slate-900/50">
+                {/* Story Detail View */}
+                <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-[#0e121c]/50">
                   <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-xs font-mono text-rose-300">
-                      <Calendar className="w-3.5 h-3.5 text-rose-400" />
+                    <div className="flex items-center gap-2 text-xs font-mono text-[#e8c99b]">
+                      <Calendar className="w-3.5 h-3.5 text-[#e8c99b]" />
                       <span>{filteredMemories[selectedPhotoIndex].date}</span>
                       <span>•</span>
-                      <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                      <MapPin className="w-3.5 h-3.5 text-[#e8c99b]" />
                       <span>{filteredMemories[selectedPhotoIndex].location}</span>
                     </div>
 
                     <h3 className="text-xl sm:text-2xl font-semibold text-white font-display leading-tight">
                       {filteredMemories[selectedPhotoIndex].title}
                     </h3>
-                    <p className="text-sm text-rose-300 font-serif italic">
+                    <p className="text-sm text-[#e8c99b] font-serif italic">
                       "{filteredMemories[selectedPhotoIndex].subtitle}"
                     </p>
 
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="p-4 rounded-2xl bg-white/5 border border-white/8">
                       <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
                         {filteredMemories[selectedPhotoIndex].story}
                       </p>
@@ -702,9 +702,9 @@ export default function MemoryGallery({ herName }) {
                   </div>
 
                   {/* Devotional Note Footer & Keyboard Hint */}
-                  <div className="space-y-2 pt-4 border-t border-white/10">
+                  <div className="space-y-2 pt-4 border-t border-white/8">
                     <div className="text-xs text-slate-400 font-light italic flex items-center gap-2">
-                      <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400 flex-shrink-0 animate-heart-beat" />
+                      <Heart className="w-3.5 h-3.5 text-[#d96b82] fill-[#d96b82] flex-shrink-0 animate-heart-beat" />
                       <span>Every memory with you is my favorite chapter.</span>
                     </div>
                     <div className="text-[10px] font-mono text-slate-500">
@@ -725,13 +725,13 @@ export default function MemoryGallery({ herName }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-slate-950/96 backdrop-blur-2xl p-6 sm:p-10 select-none"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-between bg-[#08090e]/97 backdrop-blur-2xl p-6 sm:p-10 select-none"
           >
             {/* Top Slideshow Control Bar */}
             <div className="w-full max-w-5xl flex items-center justify-between z-10">
-              <div className="flex items-center gap-2 text-rose-300 font-mono text-xs sm:text-sm">
-                <Sparkles className="w-4 h-4 text-pink-400 animate-pulse" />
-                <span>SLIDESHOW THEATER // {slideshowIndex + 1} OF {filteredMemories.length}</span>
+              <div className="flex items-center gap-2 text-[#e8c99b] font-mono text-xs sm:text-sm">
+                <Sparkles className="w-4 h-4 text-[#e8c99b] animate-pulse" />
+                <span>MEMORIES CINEMA // {slideshowIndex + 1} OF {filteredMemories.length}</span>
               </div>
 
               <div className="flex items-center gap-3">
@@ -747,7 +747,7 @@ export default function MemoryGallery({ herName }) {
                 <button
                   type="button"
                   onClick={() => setIsSlideshowActive(false)}
-                  className="p-2 rounded-full bg-white/10 hover:bg-rose-500 text-white border border-white/20 transition-colors cursor-pointer"
+                  className="p-2 rounded-full bg-white/10 hover:bg-[#d96b82] text-white border border-white/20 transition-colors cursor-pointer"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -765,7 +765,7 @@ export default function MemoryGallery({ herName }) {
                   transition={{ duration: 0.8, ease: 'easeInOut' }}
                   className="flex flex-col items-center justify-center max-w-3xl text-center space-y-4"
                 >
-                  <div className="relative max-h-[55vh] rounded-3xl overflow-hidden shadow-2xl border border-pink-500/30 glass-panel-glow">
+                  <div className="relative max-h-[55vh] rounded-3xl overflow-hidden shadow-2xl border border-[#e8c99b]/35 glass-panel-glow">
                     <img
                       src={filteredMemories[slideshowIndex].src}
                       alt={filteredMemories[slideshowIndex].title}
@@ -774,7 +774,7 @@ export default function MemoryGallery({ herName }) {
                   </div>
 
                   <div className="space-y-1.5 px-4 max-w-2xl">
-                    <div className="text-xs font-mono text-rose-300">
+                    <div className="text-xs font-mono text-[#e8c99b]">
                       {filteredMemories[slideshowIndex].date} • {filteredMemories[slideshowIndex].location}
                     </div>
                     <h3 className="text-xl sm:text-3xl font-display text-white font-medium">
@@ -791,14 +791,14 @@ export default function MemoryGallery({ herName }) {
               <button
                 type="button"
                 onClick={() => setSlideshowIndex((prev) => (prev > 0 ? prev - 1 : filteredMemories.length - 1))}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 cursor-pointer transition-all"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 cursor-pointer transition-all"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 type="button"
                 onClick={() => setSlideshowIndex((prev) => (prev + 1) % filteredMemories.length)}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 hover:bg-rose-500 text-white backdrop-blur-md border border-white/20 cursor-pointer transition-all"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 cursor-pointer transition-all"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>
@@ -808,12 +808,12 @@ export default function MemoryGallery({ herName }) {
             <div className="w-full max-w-5xl space-y-2 z-10">
               <div className="w-full h-1 rounded-full bg-white/10 overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-pink-500 to-rose-500 transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-[#d96b82] via-[#e8c99b] to-[#f5e4cb] transition-all duration-300"
                   style={{ width: `${((slideshowIndex + 1) / filteredMemories.length) * 100}%` }}
                 />
               </div>
               <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
-                <span>Multiverse Cinema Mode</span>
+                <span>Sanctuary Cinema Mode</span>
                 <span>Auto-advancing every 4.5s</span>
               </div>
             </div>

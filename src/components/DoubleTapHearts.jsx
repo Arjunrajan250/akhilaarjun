@@ -5,11 +5,11 @@ import { sound } from '../utils/sound';
 import { haptics } from '../utils/haptics';
 
 const HEART_COLORS = [
-  'text-rose-500 fill-rose-500 drop-shadow-[0_0_12px_rgba(244,63,94,0.8)]',
-  'text-pink-400 fill-pink-400 drop-shadow-[0_0_12px_rgba(244,114,182,0.8)]',
-  'text-rose-400 fill-rose-400 drop-shadow-[0_0_12px_rgba(251,113,133,0.8)]',
-  'text-amber-300 fill-amber-300 drop-shadow-[0_0_12px_rgba(252,211,77,0.8)]',
-  'text-purple-400 fill-purple-400 drop-shadow-[0_0_12px_rgba(192,132,252,0.8)]',
+  'text-[#d96b82] fill-[#d96b82] drop-shadow-[0_0_14px_rgba(217,107,130,0.8)]',
+  'text-[#b84760] fill-[#b84760] drop-shadow-[0_0_14px_rgba(184,71,96,0.8)]',
+  'text-[#e8c99b] fill-[#e8c99b] drop-shadow-[0_0_14px_rgba(232,201,155,0.8)]',
+  'text-[#f5e4cb] fill-[#f5e4cb] drop-shadow-[0_0_14px_rgba(245,228,203,0.8)]',
+  'text-[#798cb7] fill-[#798cb7] drop-shadow-[0_0_14px_rgba(121,140,183,0.8)]',
 ];
 
 export default function DoubleTapHearts() {

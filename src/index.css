@@ -6,102 +6,151 @@
     --font-display: 'Outfit', sans-serif;
     --font-serif: 'Cinzel', serif;
     --font-mono: 'JetBrains Mono', monospace;
+    --font-handwriting: 'Caveat', cursive;
+    --font-signature: 'Alex Brush', cursive;
+
+    /* Luxury Bespoke Design Tokens */
+    --color-obsidian: #08090e;
+    --color-surface-1: rgba(14, 18, 28, 0.72);
+    --color-surface-2: rgba(22, 28, 44, 0.65);
+    --color-cashmere: #d96b82;
+    --color-cashmere-dark: #b84760;
+    --color-champagne: #e8c99b;
+    --color-champagne-light: #f5e4cb;
+    --color-ivory: #faf7f2;
+    --color-indigo-subtle: #1a2238;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    background-color: var(--color-obsidian);
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #030712;
-    color: #f8fafc;
+    background-color: var(--color-obsidian);
+    color: var(--color-ivory);
     overflow-x: hidden;
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 
   .font-serif-title {
     font-family: var(--font-serif);
+    letter-spacing: 0.04em;
   }
 
   .font-mono-code {
     font-family: var(--font-mono);
   }
+
+  .font-handwriting {
+    font-family: var(--font-handwriting);
+  }
+
+  .font-signature {
+    font-family: var(--font-signature);
+  }
 }
 
-/* Glassmorphism Utilities */
+/* Luxury Glassmorphism Utilities */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(14, 18, 28, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.65), 
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .glass-panel-glow {
-  background: radial-gradient(circle at top left, rgba(236, 72, 153, 0.12), transparent 40%),
-              rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(244, 114, 182, 0.2);
-  box-shadow: 0 25px 60px -15px rgba(236, 72, 153, 0.15),
-              0 0 30px -10px rgba(244, 114, 182, 0.2),
+  background: radial-gradient(circle at top left, rgba(232, 201, 155, 0.08), transparent 45%),
+              radial-gradient(circle at bottom right, rgba(217, 107, 130, 0.07), transparent 45%),
+              rgba(14, 18, 28, 0.78);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(232, 201, 155, 0.16);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75),
+              0 0 35px -10px rgba(217, 107, 130, 0.12),
+              inset 0 1px 1px rgba(255, 255, 255, 0.14);
+}
+
+.glass-panel-gold {
+  background: radial-gradient(circle at top left, rgba(232, 201, 155, 0.12), transparent 50%),
+              rgba(16, 20, 32, 0.82);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(232, 201, 155, 0.28);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8),
+              0 0 30px -10px rgba(232, 201, 155, 0.15),
               inset 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 
 .glass-input {
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   transition: all 0.3s ease;
 }
 
 .glass-input:focus {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(244, 114, 182, 0.7);
-  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(232, 201, 155, 0.65);
+  box-shadow: 0 0 25px rgba(232, 201, 155, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-/* Custom Scrollbar */
+/* Custom Refined Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #030712;
+  background: #08090e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #181d2c;
   border-radius: 9999px;
-  border: 2px solid #030712;
+  border: 2px solid #08090e;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ec4899;
+  background: #d96b82;
 }
 
-/* Glowing text gradients */
+/* Glowing text gradients - Luxury & Refined */
 .gradient-text-romantic {
-  background: linear-gradient(135deg, #ffffff 0%, #fbcfe8 50%, #f472b6 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f7d6dc 45%, #d96b82 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-gold {
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 50%, #d97706 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f5e4cb 45%, #e8c99b 80%, #c49257 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-champagne {
+  background: linear-gradient(135deg, #ffffff 0%, #f3e8d0 50%, #d4a373 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text-cashmere {
+  background: linear-gradient(135deg, #ffffff 0%, #fcdfe6 40%, #d96b82 85%, #a6354c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-cosmic {
-  background: linear-gradient(135deg, #c084fc 0%, #ec4899 50%, #f43f5e 100%);
+  background: linear-gradient(135deg, #e8c99b 0%, #d96b82 50%, #9e7bb5 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -109,14 +158,14 @@
 /* Pulse keyframes */
 @keyframes heartPulse {
   0% { transform: scale(1); }
-  14% { transform: scale(1.15); }
+  14% { transform: scale(1.12); }
   28% { transform: scale(1); }
-  42% { transform: scale(1.15); }
+  42% { transform: scale(1.12); }
   70% { transform: scale(1); }
 }
 
 .animate-heart-beat {
-  animation: heartPulse 1.4s ease-in-out infinite;
+  animation: heartPulse 1.5s ease-in-out infinite;
 }
 
 @keyframes ekgMove {

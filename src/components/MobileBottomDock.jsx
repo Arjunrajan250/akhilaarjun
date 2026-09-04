@@ -68,7 +68,7 @@ export default function MobileBottomDock() {
       className="fixed bottom-2 inset-x-2 z-40 md:hidden flex justify-center pointer-events-none"
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)' }}
     >
-      <div className="pointer-events-auto flex items-center justify-between gap-1 px-2.5 py-1.5 rounded-full bg-slate-950/85 backdrop-blur-2xl border border-pink-500/30 shadow-[0_10px_30px_rgba(0,0,0,0.8),0_0_20px_rgba(236,72,153,0.2)] max-w-full overflow-x-auto scrollbar-none">
+      <div className="pointer-events-auto flex items-center justify-between gap-1 px-2.5 py-1.5 rounded-full bg-[#08090e]/92 backdrop-blur-2xl border border-[#e8c99b]/25 shadow-[0_10px_35px_rgba(0,0,0,0.8),0_0_15px_rgba(232,201,155,0.12)] max-w-full overflow-x-auto scrollbar-none">
         {DOCK_ITEMS.map((item) => {
           const Icon = item.icon;
           const isActive = activeSection === item.id;
@@ -81,18 +81,18 @@ export default function MobileBottomDock() {
               className={`relative flex flex-col items-center justify-center min-w-[42px] py-1 px-1.5 rounded-full transition-all duration-200 cursor-pointer active:scale-90 ${
                 isActive
                   ? 'text-white'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-400 hover:text-[#f5e4cb]'
               }`}
             >
               {isActive && (
                 <motion.div
                   layoutId="activeDockPill"
-                  className="absolute inset-0 rounded-full bg-gradient-to-tr from-pink-600/80 to-rose-600/80 -z-10 shadow-md shadow-pink-500/30"
+                  className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#b84760] to-[#d96b82] -z-10 shadow-md shadow-[#b84760]/30 border border-[#e8c99b]/30"
                   transition={{ type: 'spring', stiffness: 450, damping: 30 }}
                 />
               )}
               <Icon className={`w-4 h-4 transition-transform ${isActive ? 'scale-110 text-white' : ''}`} />
-              <span className="text-[9px] font-mono tracking-tight mt-0.5 whitespace-nowrap">
+              <span className="text-[9px] font-sans tracking-tight mt-0.5 whitespace-nowrap">
                 {item.label}
               </span>
             </button>

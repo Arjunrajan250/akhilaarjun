@@ -5,13 +5,13 @@ import {
   VolumeX, 
   Menu, 
   X, 
-  Sparkles,
-  Clock,
-  FileCode,
-  Camera,
-  Music,
-  Activity,
-  Moon
+  Sparkles, 
+  Clock, 
+  FileCode, 
+  Camera, 
+  Music, 
+  Activity, 
+  Moon 
 } from 'lucide-react';
 import { sound } from '../utils/sound';
 import { haptics } from '../utils/haptics';
@@ -55,7 +55,6 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
         onOpenSecretVault();
       }
     } else {
-      // Auto-reset tap count after 2.5s of inactivity
       setTimeout(() => {
         setTapCount(0);
       }, 2500);
@@ -64,12 +63,12 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
 
   const navLinks = [
     { label: 'Pulse', href: '#heartbeat', icon: Activity },
-    { label: 'Timeline', href: '#timeline', icon: Clock },
-    { label: 'Our Memories', href: '#memories', icon: Camera },
+    { label: 'Our Story', href: '#timeline', icon: Clock },
+    { label: 'Memories', href: '#memories', icon: Camera },
     { label: 'The Moon', href: '#moon', icon: Moon },
     { label: 'Soundtrack', href: '#soundtrack', icon: Music },
     { label: 'Love Letters', href: '#letters', icon: Sparkles },
-    { label: 'System Vows', href: '#vows', icon: FileCode },
+    { label: 'Vows', href: '#vows', icon: FileCode },
   ];
 
   return (
@@ -77,8 +76,8 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
       <div 
         className={`max-w-6xl mx-auto rounded-2xl sm:rounded-full transition-all duration-300 px-3.5 sm:px-6 py-2 sm:py-2.5 flex items-center justify-between border ${
           isScrolled 
-            ? 'glass-panel-glow border-pink-500/30 bg-slate-950/85 shadow-2xl backdrop-blur-xl' 
-            : 'glass-panel border-white/10 bg-slate-950/50 backdrop-blur-md'
+            ? 'glass-panel-glow border-[#e8c99b]/25 bg-[#08090e]/90 shadow-2xl backdrop-blur-xl' 
+            : 'glass-panel border-white/10 bg-[#08090e]/60 backdrop-blur-md'
         }`}
       >
         {/* Brand / Logo with Easter Egg Multi-Tap */}
@@ -87,16 +86,16 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
           className="flex items-center gap-2 group cursor-pointer text-left relative"
           onClick={handleLogoTap}
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-pink-500 to-rose-600 flex items-center justify-center shadow-md shadow-pink-500/20 group-hover:scale-105 active:scale-95 transition-transform shrink-0">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#d96b82] to-[#b84760] flex items-center justify-center shadow-md shadow-[#d96b82]/25 group-hover:scale-105 active:scale-95 transition-transform shrink-0 border border-[#e8c99b]/30">
             <Heart className="w-4 h-4 text-white fill-white animate-heart-beat" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs sm:text-sm font-semibold tracking-wider text-white font-display flex items-center gap-1">
+            <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#faf7f2] font-display flex items-center gap-1.5">
               <span>Arjun & {herName || 'Lechu'}</span>
-              <Sparkles className="w-3 h-3 text-pink-400 opacity-70" />
+              <Sparkles className="w-3 h-3 text-[#e8c99b] opacity-80" />
             </span>
-            <span className="text-[9px] sm:text-[10px] font-mono text-rose-300/80 -mt-0.5">
-              Day {daysTogether || 0} // ∞ Loop {tapCount > 1 && `(Tap ${tapCount}/5)`}
+            <span className="text-[9px] sm:text-[10px] font-mono text-[#e8c99b]/90 -mt-0.5">
+              Day {daysTogether || 0} • Eternal Love {tapCount > 1 && `(${tapCount}/5)`}
             </span>
           </div>
         </button>
@@ -110,9 +109,9 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
                 key={link.label}
                 href={link.href}
                 onClick={() => sound.playChime(493.88, 0.15)}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium text-slate-300 hover:text-[#faf7f2] hover:bg-white/8 transition-all cursor-pointer"
               >
-                <Icon className="w-3.5 h-3.5 text-rose-400/80" />
+                <Icon className="w-3.5 h-3.5 text-[#d96b82]" />
                 <span>{link.label}</span>
               </a>
             );
@@ -129,16 +128,16 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
             title={isPlaying ? 'Pause Music' : 'Play Romantic Music'}
             className={`p-2 rounded-xl sm:rounded-full border transition-all cursor-pointer flex items-center gap-1.5 ${
               isPlaying 
-                ? 'bg-rose-500/20 border-rose-500/40 text-rose-300 shadow-md shadow-pink-500/20' 
-                : 'bg-slate-900/60 border-white/10 text-slate-400 hover:text-white'
+                ? 'bg-[#d96b82]/20 border-[#d96b82]/50 text-[#fcdfe6] shadow-md shadow-[#d96b82]/20' 
+                : 'bg-white/5 border-white/10 text-slate-400 hover:text-[#faf7f2] hover:bg-white/10'
             }`}
           >
-            <Music className={`w-4 h-4 ${isPlaying ? 'text-pink-400 animate-pulse' : ''}`} />
+            <Music className={`w-4 h-4 ${isPlaying ? 'text-[#d96b82] animate-pulse' : ''}`} />
             {isPlaying && (
               <span className="hidden lg:flex items-end gap-0.5 h-3 pr-1">
-                <span className="w-0.5 h-3 bg-rose-400 rounded-full animate-[pulse_0.6s_ease-in-out_infinite]" />
-                <span className="w-0.5 h-2 bg-pink-400 rounded-full animate-[pulse_0.4s_ease-in-out_infinite_0.15s]" />
-                <span className="w-0.5 h-2.5 bg-rose-400 rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.3s]" />
+                <span className="w-0.5 h-3 bg-[#e8c99b] rounded-full animate-[pulse_0.6s_ease-in-out_infinite]" />
+                <span className="w-0.5 h-2 bg-[#d96b82] rounded-full animate-[pulse_0.4s_ease-in-out_infinite_0.15s]" />
+                <span className="w-0.5 h-2.5 bg-[#e8c99b] rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.3s]" />
               </span>
             )}
           </button>
@@ -151,8 +150,8 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
             title={isMuted ? 'Unmute Sound Effects' : 'Mute Sound Effects'}
             className={`p-2 rounded-xl sm:rounded-full border transition-all cursor-pointer ${
               isMuted 
-                ? 'bg-slate-900/60 border-white/10 text-slate-400 hover:text-white' 
-                : 'bg-rose-500/10 border-white/10 text-slate-300 hover:text-white'
+                ? 'bg-white/5 border-white/10 text-slate-400 hover:text-[#faf7f2]' 
+                : 'bg-[#e8c99b]/15 border-[#e8c99b]/30 text-[#e8c99b] hover:text-[#faf7f2]'
             }`}
           >
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -172,7 +171,7 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
 
       {/* Mobile Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden mt-2 p-4 rounded-2xl glass-panel-glow border border-pink-500/30 bg-slate-950/95 space-y-2 backdrop-blur-xl shadow-2xl animate-[fadeIn_0.2s_ease-out]">
+        <div className="md:hidden mt-2 p-4 rounded-2xl glass-panel-glow border border-[#e8c99b]/25 bg-[#08090e]/95 space-y-1.5 backdrop-blur-xl shadow-2xl animate-[fadeIn_0.2s_ease-out]">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -183,9 +182,9 @@ export default function Navbar({ daysTogether, herName, onOpenSecretVault }) {
                   sound.playChime(493.88, 0.15);
                   setIsMobileMenuOpen(false);
                 }}
-                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:bg-white/10 hover:text-rose-300 transition-colors"
+                className="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-200 hover:bg-white/8 hover:text-[#fcdfe6] transition-colors"
               >
-                <Icon className="w-4 h-4 text-rose-400" />
+                <Icon className="w-4 h-4 text-[#d96b82]" />
                 <span>{link.label}</span>
               </a>
             );

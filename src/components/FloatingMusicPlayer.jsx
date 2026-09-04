@@ -68,17 +68,17 @@ export default function FloatingMusicPlayer() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 30, scale: 0.92 }}
             transition={{ duration: 0.35, ease: 'easeOut' }}
-            className="w-full sm:w-96 max-h-[85vh] overflow-y-auto rounded-3xl glass-panel-glow border border-pink-500/30 p-5 sm:p-6 shadow-2xl backdrop-blur-2xl bg-slate-950/95 text-white relative overflow-x-hidden"
+            className="w-full sm:w-96 max-h-[85vh] overflow-y-auto rounded-3xl glass-panel-glow border border-[#e8c99b]/35 p-5 sm:p-6 shadow-2xl backdrop-blur-2xl bg-[#08090e]/95 text-white relative overflow-x-hidden"
           >
             {/* Background Ambient Glow */}
-            <div className="absolute -top-16 -right-16 w-36 h-36 rounded-full bg-rose-500/20 blur-3xl pointer-events-none" />
-            <div className="absolute -bottom-16 -left-16 w-36 h-36 rounded-full bg-pink-500/20 blur-3xl pointer-events-none" />
+            <div className="absolute -top-16 -right-16 w-36 h-36 rounded-full bg-[#e8c99b]/15 blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-16 -left-16 w-36 h-36 rounded-full bg-[#d96b82]/15 blur-3xl pointer-events-none" />
 
             {/* Top Bar: Label & Minimize Button */}
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2 text-xs font-mono text-rose-300">
-                <Music2 className="w-3.5 h-3.5 text-rose-400 animate-pulse" />
-                <span className="tracking-wider uppercase">COSMIC PLAYER // TUNE {currentSongIndex + 1}/{songs.length}</span>
+              <div className="flex items-center gap-2 text-xs font-mono text-[#e8c99b]">
+                <Music2 className="w-3.5 h-3.5 text-[#e8c99b] animate-pulse" />
+                <span className="tracking-wider uppercase">MUSIC SANCTUARY • {currentSongIndex + 1}/{songs.length}</span>
               </div>
               <div className="flex items-center gap-1">
                 <button
@@ -86,7 +86,7 @@ export default function FloatingMusicPlayer() {
                   onClick={() => setShowQueue(!showQueue)}
                   className={`p-1.5 rounded-lg border transition-colors cursor-pointer ${
                     showQueue 
-                      ? 'bg-rose-500/30 border-rose-500/40 text-rose-200' 
+                      ? 'bg-[#e8c99b]/25 border-[#e8c99b]/40 text-[#f5e4cb]' 
                       : 'bg-white/5 border-white/10 text-slate-400 hover:text-white'
                   }`}
                   title="Toggle Track List"
@@ -118,16 +118,16 @@ export default function FloatingMusicPlayer() {
                       onClick={() => playSong(idx)}
                       className={`w-full text-left p-2.5 rounded-xl transition-all flex items-center justify-between gap-3 text-xs cursor-pointer ${
                         isCurrent
-                          ? 'bg-rose-500/20 border border-rose-500/30 text-white'
+                          ? 'bg-[#e8c99b]/15 border border-[#e8c99b]/35 text-white'
                           : 'bg-white/5 hover:bg-white/10 border border-transparent text-slate-300'
                       }`}
                     >
                       <div className="flex items-center gap-2.5 min-w-0">
-                        <span className={`font-mono text-[10px] ${isCurrent ? 'text-rose-400 font-bold' : 'text-slate-500'}`}>
+                        <span className={`font-mono text-[10px] ${isCurrent ? 'text-[#e8c99b] font-bold' : 'text-slate-500'}`}>
                           0{idx + 1}
                         </span>
                         <div className="truncate">
-                          <p className={`font-medium truncate ${isCurrent ? 'text-rose-200' : 'text-slate-200'}`}>
+                          <p className={`font-medium truncate ${isCurrent ? 'text-[#f5e4cb]' : 'text-slate-200'}`}>
                             {song.title}
                           </p>
                           <p className="text-[10px] text-slate-400 truncate">{song.artist}</p>
@@ -135,9 +135,9 @@ export default function FloatingMusicPlayer() {
                       </div>
                       {isCurrent && isPlaying && (
                         <div className="flex items-end gap-0.5 h-3 shrink-0">
-                          <span className="w-0.5 bg-rose-400 rounded-full animate-[equalizer_0.7s_ease-in-out_infinite]" />
-                          <span className="w-0.5 bg-pink-400 rounded-full animate-[equalizer_0.5s_ease-in-out_infinite_0.2s]" />
-                          <span className="w-0.5 bg-rose-400 rounded-full animate-[equalizer_0.8s_ease-in-out_infinite_0.4s]" />
+                          <span className="w-0.5 bg-[#e8c99b] rounded-full animate-[equalizer_0.7s_ease-in-out_infinite]" />
+                          <span className="w-0.5 bg-[#d96b82] rounded-full animate-[equalizer_0.5s_ease-in-out_infinite_0.2s]" />
+                          <span className="w-0.5 bg-[#e8c99b] rounded-full animate-[equalizer_0.8s_ease-in-out_infinite_0.4s]" />
                         </div>
                       )}
                     </button>
@@ -160,12 +160,12 @@ export default function FloatingMusicPlayer() {
                         duration: 8, 
                         ease: 'linear' 
                       }}
-                      className="relative w-full h-full rounded-full bg-slate-900 border-4 border-slate-800 shadow-xl flex items-center justify-center overflow-hidden"
+                      className="relative w-full h-full rounded-full bg-[#0d1017] border-4 border-[#1c2230] shadow-xl flex items-center justify-center overflow-hidden"
                     >
                       {/* Vinyl grooves */}
-                      <div className="absolute inset-2 rounded-full border border-slate-700/40" />
-                      <div className="absolute inset-5 rounded-full border border-slate-700/50" />
-                      <div className="absolute inset-8 rounded-full border border-slate-700/60" />
+                      <div className="absolute inset-2 rounded-full border border-slate-700/30" />
+                      <div className="absolute inset-5 rounded-full border border-slate-700/40" />
+                      <div className="absolute inset-8 rounded-full border border-slate-700/50" />
                       
                       {/* Center Label */}
                       <div className={`w-12 h-12 rounded-full bg-gradient-to-br ${currentSong.accent} flex items-center justify-center shadow-md p-2 text-center`}>
@@ -173,8 +173,8 @@ export default function FloatingMusicPlayer() {
                       </div>
                     </motion.div>
 
-                    {/* Small Romantic Heart badge */}
-                    <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-pink-600 border border-white/20 flex items-center justify-center shadow-md shadow-pink-500/40">
+                    {/* Romantic Heart badge */}
+                    <div className="absolute -bottom-1 -right-1 w-7 h-7 rounded-full bg-[#d96b82] border border-white/20 flex items-center justify-center shadow-md shadow-[#d96b82]/40">
                       <Heart className="w-3.5 h-3.5 fill-white text-white" />
                     </div>
                   </div>
@@ -184,10 +184,10 @@ export default function FloatingMusicPlayer() {
                     <h4 className="font-display font-semibold text-base sm:text-lg text-white truncate">
                       {currentSong.title}
                     </h4>
-                    <p className="text-xs text-rose-300/90 font-sans truncate">
+                    <p className="text-xs text-[#e8c99b]/90 font-sans truncate">
                       {currentSong.artist}
                     </p>
-                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-rose-500/15 border border-rose-500/20 text-[10px] font-mono text-pink-300 mt-1">
+                    <span className="inline-block px-2.5 py-0.5 rounded-full bg-[#e8c99b]/15 border border-[#e8c99b]/25 text-[10px] font-mono text-[#f5e4cb] mt-1">
                       {currentSong.mood} • {currentSong.tag}
                     </span>
                   </div>
@@ -205,9 +205,9 @@ export default function FloatingMusicPlayer() {
                   value={currentTime}
                   onChange={(e) => seek(Number(e.target.value))}
                   aria-label="Seek track position"
-                  className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-rose-500 hover:h-2 transition-all"
+                  className="w-full h-1.5 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#e8c99b] hover:h-2 transition-all"
                   style={{
-                    background: `linear-gradient(to right, #ec4899 ${progressPercent}%, rgba(255, 255, 255, 0.1) ${progressPercent}%)`
+                    background: `linear-gradient(to right, #e8c99b ${progressPercent}%, rgba(255, 255, 255, 0.1) ${progressPercent}%)`
                   }}
                 />
               </div>
@@ -223,7 +223,7 @@ export default function FloatingMusicPlayer() {
                 type="button"
                 onClick={toggleShuffle}
                 className={`p-2.5 sm:p-2 rounded-full transition-colors cursor-pointer active:scale-95 ${
-                  isShuffle ? 'text-pink-400 bg-pink-500/20' : 'text-slate-400 hover:text-white'
+                  isShuffle ? 'text-[#e8c99b] bg-[#e8c99b]/20' : 'text-slate-400 hover:text-white'
                 }`}
                 title={isShuffle ? 'Shuffle Enabled' : 'Shuffle Off'}
                 aria-label="Toggle shuffle"
@@ -245,7 +245,7 @@ export default function FloatingMusicPlayer() {
                 <button
                   type="button"
                   onClick={togglePlay}
-                  className="p-4 sm:p-4 rounded-full bg-gradient-to-r from-pink-500 to-rose-600 hover:from-pink-400 hover:to-rose-500 text-white shadow-lg shadow-pink-500/40 transition-transform active:scale-95 cursor-pointer"
+                  className="p-4 sm:p-4 rounded-full bg-gradient-to-r from-[#d96b82] to-[#b84760] hover:from-[#e08599] hover:to-[#c2546c] text-white shadow-lg shadow-[#d96b82]/30 border border-[#e8c99b]/30 transition-transform active:scale-95 cursor-pointer"
                   title={isPlaying ? 'Pause' : 'Play'}
                   aria-label={isPlaying ? 'Pause music' : 'Play music'}
                 >
@@ -271,7 +271,7 @@ export default function FloatingMusicPlayer() {
                 type="button"
                 onClick={toggleRepeat}
                 className={`p-2.5 sm:p-2 rounded-full transition-colors cursor-pointer active:scale-95 ${
-                  isRepeat ? 'text-pink-400 bg-pink-500/20' : 'text-slate-400 hover:text-white'
+                  isRepeat ? 'text-[#e8c99b] bg-[#e8c99b]/20' : 'text-slate-400 hover:text-white'
                 }`}
                 title={isRepeat ? 'Repeat Song Enabled' : 'Repeat Off'}
                 aria-label="Toggle repeat"
@@ -281,7 +281,7 @@ export default function FloatingMusicPlayer() {
             </div>
 
             {/* Volume Control Bar */}
-            <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/10 text-xs text-slate-400">
+            <div className="flex items-center gap-2 mt-4 pt-3 border-t border-white/8 text-xs text-slate-400">
               <button
                 type="button"
                 onClick={toggleMute}
@@ -290,7 +290,7 @@ export default function FloatingMusicPlayer() {
                 aria-label="Toggle mute"
               >
                 {isMuted || volume === 0 ? (
-                  <VolumeX className="w-4 h-4 text-rose-400" />
+                  <VolumeX className="w-4 h-4 text-[#d96b82]" />
                 ) : (
                   <Volume2 className="w-4 h-4" />
                 )}
@@ -303,7 +303,7 @@ export default function FloatingMusicPlayer() {
                 value={isMuted ? 0 : volume}
                 onChange={(e) => setVolume(Number(e.target.value))}
                 aria-label="Volume slider"
-                className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-rose-400"
+                className="w-full h-1 bg-white/10 rounded-lg appearance-none cursor-pointer accent-[#e8c99b]"
               />
               <span className="font-mono text-[10px] w-7 text-right">
                 {isMuted ? '0%' : `${Math.round(volume * 100)}%`}
@@ -318,7 +318,7 @@ export default function FloatingMusicPlayer() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3 }}
-            className="flex items-center gap-2 sm:gap-3 p-2 sm:pr-3 rounded-full glass-panel-glow border border-pink-500/30 bg-slate-950/90 shadow-2xl backdrop-blur-xl group cursor-pointer hover:border-pink-400/50 transition-all"
+            className="flex items-center gap-2 sm:gap-3 p-2 sm:pr-3 rounded-full glass-panel-glow border border-[#e8c99b]/35 bg-[#08090e]/90 shadow-2xl backdrop-blur-xl group cursor-pointer hover:border-[#e8c99b]/60 transition-all"
             onClick={() => setIsExpanded(true)}
             role="button"
             tabIndex={0}
@@ -330,7 +330,7 @@ export default function FloatingMusicPlayer() {
             }}
           >
             {/* Spinning Disc Avatar */}
-            <div className="relative w-10 h-10 rounded-full bg-slate-900 border border-pink-500/30 flex items-center justify-center overflow-hidden shadow-inner">
+            <div className="relative w-10 h-10 rounded-full bg-[#0d1017] border border-[#e8c99b]/30 flex items-center justify-center overflow-hidden shadow-inner">
               <motion.div
                 animate={{ rotate: isPlaying ? 360 : 0 }}
                 transition={{ 
@@ -352,13 +352,13 @@ export default function FloatingMusicPlayer() {
                 </span>
                 {isPlaying && (
                   <div className="flex items-end gap-0.5 h-2.5 shrink-0">
-                    <span className="w-0.5 h-2.5 bg-rose-400 rounded-full animate-[pulse_0.6s_ease-in-out_infinite]" />
-                    <span className="w-0.5 h-1.5 bg-pink-400 rounded-full animate-[pulse_0.4s_ease-in-out_infinite_0.15s]" />
-                    <span className="w-0.5 h-2 bg-rose-400 rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.3s]" />
+                    <span className="w-0.5 h-2.5 bg-[#e8c99b] rounded-full animate-[pulse_0.6s_ease-in-out_infinite]" />
+                    <span className="w-0.5 h-1.5 bg-[#d96b82] rounded-full animate-[pulse_0.4s_ease-in-out_infinite_0.15s]" />
+                    <span className="w-0.5 h-2 bg-[#e8c99b] rounded-full animate-[pulse_0.7s_ease-in-out_infinite_0.3s]" />
                   </div>
                 )}
               </div>
-              <span className="text-[10px] text-rose-300/80 truncate">
+              <span className="text-[10px] text-[#e8c99b]/90 truncate">
                 {currentSong.artist}
               </span>
             </div>
@@ -370,7 +370,7 @@ export default function FloatingMusicPlayer() {
                 e.stopPropagation();
                 togglePlay();
               }}
-              className="w-8 h-8 rounded-full bg-rose-600 hover:bg-rose-500 flex items-center justify-center text-white shadow-md shadow-rose-600/30 transition-transform active:scale-90 cursor-pointer"
+              className="w-8 h-8 rounded-full bg-[#d96b82] hover:bg-[#c2546c] flex items-center justify-center text-white shadow-md shadow-[#d96b82]/30 transition-transform active:scale-90 cursor-pointer"
               title={isPlaying ? 'Pause' : 'Play'}
               aria-label={isPlaying ? 'Pause music' : 'Play music'}
             >
@@ -396,7 +396,7 @@ export default function FloatingMusicPlayer() {
             </button>
 
             {/* Expand Arrow */}
-            <div className="pl-1 text-slate-400 group-hover:text-rose-300 transition-colors">
+            <div className="pl-1 text-slate-400 group-hover:text-[#e8c99b] transition-colors">
               <ChevronUp className="w-4 h-4" />
             </div>
           </motion.div>
