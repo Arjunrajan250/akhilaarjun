@@ -24,6 +24,7 @@ export function MusicProvider({ children }) {
     const audio = new Audio();
     audio.preload = 'metadata';
     audio.volume = volume;
+    audio.src = encodeURI(currentSong.src);
     audioRef.current = audio;
 
     const handleTimeUpdate = () => {
@@ -57,6 +58,28 @@ export function MusicProvider({ children }) {
     audio.addEventListener('canplay', handleCanPlay);
     audio.addEventListener('play', handlePlay);
     audio.addEventListener('pause', handlePause);
+
+    // Attempt default playback immediately
+    audio.play().then(() => {
+      setIsPlaying(true);
+    }).catch(() => {
+      // Browser autoplay policy prevented instant unprompted playback.
+      // Automatically start playing on the very first user interaction (touch, click, keydown).
+      const startOnInteraction = () => {
+        if (audioRef.current && audioRef.current.paused) {
+          audioRef.current.play().then(() => {
+            setIsPlaying(true);
+          }).catch(console.warn);
+        }
+        window.removeEventListener('click', startOnInteraction);
+        window.removeEventListener('touchstart', startOnInteraction);
+        window.removeEventListener('keydown', startOnInteraction);
+      };
+
+      window.addEventListener('click', startOnInteraction, { once: true, passive: true });
+      window.addEventListener('touchstart', startOnInteraction, { once: true, passive: true });
+      window.addEventListener('keydown', startOnInteraction, { once: true, passive: true });
+    });
 
     return () => {
       audio.removeEventListener('timeupdate', handleTimeUpdate);

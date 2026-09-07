@@ -28,12 +28,13 @@ import MobileBottomDock from './components/MobileBottomDock';
 import DoubleTapHearts from './components/DoubleTapHearts';
 import PWAInstallBanner from './components/PWAInstallBanner';
 import SecretVaultModal from './components/SecretVaultModal';
-import { MusicProvider } from './context/MusicContext';
+import { MusicProvider, useMusic } from './context/MusicContext';
 import { sound } from './utils/sound';
 
 const START_DATE = new Date('2023-10-06T00:00:00');
 
 function MultiverseApp() {
+  const { isPlaying, togglePlay } = useMusic();
   const [isUnlocked, setIsUnlocked] = useState(() => {
     return sessionStorage.getItem('multiverse_unlocked') === 'true';
   });
@@ -70,6 +71,9 @@ function MultiverseApp() {
   const handleUnlock = () => {
     setIsUnlocked(true);
     sessionStorage.setItem('multiverse_unlocked', 'true');
+    if (!isPlaying) {
+      togglePlay();
+    }
   };
 
   return (
