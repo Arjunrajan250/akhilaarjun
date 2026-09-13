@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Heart, 
   Sparkles, 
-  MapPin, 
   Calendar, 
   X, 
   ChevronLeft, 
@@ -17,12 +16,12 @@ import {
   Grid3X3,
   LayoutGrid,
   ChevronDown,
-  Clock,
-  Sparkle
+  Sparkle,
+  ArrowUpDown
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { sound } from '../utils/sound';
-import { MEMORIES_DATA, CATEGORIES, YEARS } from '../data/memoriesData';
+import { MEMORIES_DATA, CATEGORIES } from '../data/memoriesData';
 
 const INITIAL_DISPLAY_COUNT = 12;
 const PAGE_INCREMENT = 12;
@@ -30,7 +29,7 @@ const PAGE_INCREMENT = 12;
 export default function MemoryGallery({ herName }) {
   const [selectedPhotoIndex, setSelectedPhotoIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('all');
-  const [activeYear, setActiveYear] = useState('all');
+  const [isReversed, setIsReversed] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [visibleCount, setVisibleCount] = useState(INITIAL_DISPLAY_COUNT);
   const [viewMode, setViewMode] = useState('polaroid'); // 'polaroid' | 'compact'
@@ -45,22 +44,20 @@ export default function MemoryGallery({ herName }) {
     }
   });
 
-  // Filter memories according to Category, Year, and Search
+  // Filter memories according to Category, Search, and Reverse Order
   const filteredMemories = useMemo(() => {
-    return MEMORIES_DATA.filter((m) => {
+    const list = MEMORIES_DATA.filter((m) => {
       const matchesCategory = activeCategory === 'all' || m.category === activeCategory;
-      const matchesYear = activeYear === 'all' || String(m.year) === String(activeYear);
       const query = searchQuery.trim().toLowerCase();
       const matchesSearch = !query || 
-        m.title.toLowerCase().includes(query) ||
-        m.subtitle.toLowerCase().includes(query) ||
-        m.location.toLowerCase().includes(query) ||
-        m.story.toLowerCase().includes(query) ||
-        m.date.toLowerCase().includes(query);
+        String(m.id) === query.replace('#', '') ||
+        (m.category && m.category.toLowerCase().includes(query));
 
-      return matchesCategory && matchesYear && matchesSearch;
+      return matchesCategory && matchesSearch;
     });
-  }, [activeCategory, activeYear, searchQuery]);
+
+    return isReversed ? list : [...list].reverse();
+  }, [activeCategory, searchQuery, isReversed]);
 
   // Sliced items for display
   const displayedMemories = useMemo(() => {
@@ -217,7 +214,7 @@ export default function MemoryGallery({ herName }) {
                 setSearchQuery(e.target.value);
                 setVisibleCount(INITIAL_DISPLAY_COUNT);
               }}
-              placeholder="Search by moment, location, or memory..."
+              placeholder="Filter by moment # or category..."
               className="w-full pl-10 pr-9 py-2.5 rounded-full bg-[#08090e]/70 border border-white/15 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#e8c99b] focus:ring-1 focus:ring-[#e8c99b]/40 transition-all"
             />
             {searchQuery && (
@@ -233,6 +230,20 @@ export default function MemoryGallery({ herName }) {
 
           {/* Interactive Feature Buttons */}
           <div className="flex items-center gap-2 flex-wrap">
+            {/* Order Sort Toggle */}
+            <button
+              type="button"
+              onClick={() => {
+                setIsReversed((prev) => !prev);
+                sound.playChime(isReversed ? 440 : 587, 0.2);
+              }}
+              title="Toggle display order"
+              className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-slate-300 hover:text-white text-xs font-mono transition-all cursor-pointer hover:scale-105 active:scale-95"
+            >
+              <ArrowUpDown className="w-3.5 h-3.5 text-[#e8c99b]" />
+              <span>{isReversed ? 'Reverse (36→1)' : 'Normal (1→36)'}</span>
+            </button>
+
             {/* Surprise Me Button */}
             <button
               type="button"
@@ -294,34 +305,8 @@ export default function MemoryGallery({ herName }) {
           </div>
         </div>
 
-        {/* Year Filter Chips */}
-        <div className="flex items-center gap-2 pt-2 border-t border-white/8 flex-wrap">
-          <span className="text-[11px] font-mono text-slate-400 mr-1 flex items-center gap-1">
-            <Clock className="w-3 h-3 text-[#e8c99b]" />
-            Epoch:
-          </span>
-          {YEARS.map((yr) => (
-            <button
-              key={yr}
-              type="button"
-              onClick={() => {
-                setActiveYear(yr);
-                setVisibleCount(INITIAL_DISPLAY_COUNT);
-                sound.playChime(440, 0.15);
-              }}
-              className={`px-3 py-1 rounded-full text-xs font-mono transition-all cursor-pointer ${
-                activeYear === yr
-                  ? 'bg-[#e8c99b]/25 text-[#f5e4cb] border border-[#e8c99b] font-semibold'
-                  : 'bg-white/5 text-slate-400 hover:text-white border border-transparent'
-              }`}
-            >
-              {yr === 'all' ? 'All Years' : yr}
-            </button>
-          ))}
-        </div>
-
         {/* Category Filter Pills */}
-        <div className="flex flex-wrap items-center gap-2 pt-1">
+        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-white/8">
           {CATEGORIES.map((cat) => (
             <button
               key={cat.id}
@@ -347,20 +332,19 @@ export default function MemoryGallery({ herName }) {
       {filteredMemories.length === 0 && (
         <div className="p-12 text-center rounded-3xl glass-panel border border-white/10 space-y-4 max-w-lg mx-auto">
           <Sparkles className="w-8 h-8 text-[#e8c99b] mx-auto animate-pulse" />
-          <h3 className="text-lg font-medium text-white">No constellations match your search</h3>
+          <h3 className="text-lg font-medium text-white">No moments match your filter</h3>
           <p className="text-xs text-slate-400">
-            Try clearing your search query or selecting a different year or category.
+            Try clearing your search query or selecting All Moments.
           </p>
           <button
             type="button"
             onClick={() => {
               setSearchQuery('');
               setActiveCategory('all');
-              setActiveYear('all');
             }}
             className="px-4 py-2 rounded-full bg-[#d96b82] text-white text-xs font-medium cursor-pointer hover:bg-[#c2546c] transition-colors"
           >
-            Reset All Filters
+            Reset Filter
           </button>
         </div>
       )}
@@ -403,10 +387,10 @@ export default function MemoryGallery({ herName }) {
                         </div>
 
                         {/* Photo Image Canvas */}
-                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#08090e] mb-4 border border-white/10">
+                        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[#08090e] mb-3.5 border border-white/10">
                           <img
                             src={photo.src}
-                            alt={photo.title}
+                            alt={`Moment ${photo.id}`}
                             loading="lazy"
                             className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out"
                           />
@@ -416,65 +400,40 @@ export default function MemoryGallery({ herName }) {
                             <Maximize2 className="w-3.5 h-3.5" />
                           </div>
 
-                          {/* Bottom Floating Location Badge */}
-                          <div className="absolute bottom-3 left-3 flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#08090e]/75 backdrop-blur-md border border-white/15 text-[11px] font-mono text-slate-200">
-                            <MapPin className="w-3 h-3 text-[#e8c99b]" />
-                            <span>{photo.location}</span>
-                          </div>
-
                           {/* Index Badge */}
                           <div className="absolute top-3 left-3 px-2 py-0.5 rounded-md bg-[#08090e]/75 backdrop-blur-md border border-white/10 text-[10px] font-mono text-slate-300">
                             #{photo.id}
                           </div>
                         </div>
 
-                        {/* Caption Section */}
-                        <div className="space-y-2 px-1">
-                          <div className="flex items-start justify-between gap-2">
-                            <div>
-                              <h3 className="text-base sm:text-lg font-medium text-white font-display tracking-tight group-hover:text-[#f5e4cb] transition-colors line-clamp-1">
-                                {photo.title}
-                              </h3>
-                              <p className="text-xs text-[#e8c99b]/90 italic font-serif line-clamp-1">
-                                "{photo.subtitle}"
-                              </p>
-                            </div>
+                        {/* Clean Polaroid Bottom Bar */}
+                        <div className="flex items-center justify-between px-1.5 py-1">
+                          <span className="text-[11px] font-mono text-[#e8c99b]/85 tracking-wider flex items-center gap-1.5">
+                            <Sparkles className="w-3 h-3 text-[#e8c99b]" />
+                            <span>MOMENT #{photo.id}</span>
+                          </span>
 
-                            {/* Heart Reaction */}
-                            <button
-                              type="button"
-                              onClick={(e) => handleLike(e, photo.id)}
-                              aria-label="Send Love"
-                              title="Click to send love"
-                              className={`p-2 rounded-full border transition-all cursor-pointer shrink-0 ${
-                                isLiked
-                                  ? 'bg-[#d96b82]/30 border-[#d96b82] text-[#d96b82] scale-110'
-                                  : 'bg-white/5 border-white/10 text-slate-400 hover:text-[#fcdfe6] hover:bg-[#d96b82]/20'
+                          {/* Heart Reaction */}
+                          <button
+                            type="button"
+                            onClick={(e) => handleLike(e, photo.id)}
+                            aria-label="Send Love"
+                            title="Click to send love"
+                            className={`flex items-center gap-1.5 px-3 py-1 rounded-full border transition-all cursor-pointer ${
+                              isLiked
+                                ? 'bg-[#d96b82]/30 border-[#d96b82] text-[#fcdfe6] scale-105 shadow-md shadow-[#d96b82]/25'
+                                : 'bg-white/5 border-white/10 text-slate-400 hover:text-[#fcdfe6] hover:bg-[#d96b82]/20'
+                            }`}
+                          >
+                            <Heart
+                              className={`w-3.5 h-3.5 ${
+                                isLiked ? 'fill-[#d96b82] text-[#d96b82] animate-heart-beat' : ''
                               }`}
-                            >
-                              <Heart
-                                className={`w-4 h-4 ${
-                                  isLiked ? 'fill-[#d96b82] text-[#d96b82] animate-heart-beat' : ''
-                                }`}
-                              />
-                            </button>
-                          </div>
-
-                          <p className="text-xs text-slate-300/85 font-light line-clamp-2 leading-relaxed">
-                            {photo.story}
-                          </p>
-
-                          <div className="flex items-center justify-between pt-2 border-t border-white/8 text-[10px] font-mono text-slate-400">
-                            <span className="flex items-center gap-1">
-                              <Calendar className="w-3 h-3 text-[#e8c99b]" />
-                              {photo.date}
+                            />
+                            <span className="text-[11px] font-mono font-medium">
+                              {(likedPhotos[photo.id] || 0) > 0 ? likedPhotos[photo.id] : 'Love'}
                             </span>
-                            {(likedPhotos[photo.id] || 0) > 0 && (
-                              <span className="text-[#e8c99b] font-medium">
-                                ❤️ {likedPhotos[photo.id]} Loved
-                              </span>
-                            )}
-                          </div>
+                          </button>
                         </div>
                       </div>
                     </motion.div>
@@ -521,14 +480,9 @@ export default function MemoryGallery({ herName }) {
                           <Heart className={`w-3.5 h-3.5 ${isLiked ? 'fill-[#d96b82] text-[#d96b82]' : ''}`} />
                         </button>
 
-                        <div className="absolute bottom-2.5 left-2.5 right-2.5 space-y-0.5">
-                          <h4 className="text-xs sm:text-sm font-medium text-white line-clamp-1 group-hover:text-[#f5e4cb]">
-                            {photo.title}
-                          </h4>
-                          <p className="text-[10px] text-slate-400 font-mono flex items-center gap-1">
-                            <MapPin className="w-2.5 h-2.5 text-[#e8c99b]" />
-                            {photo.location}
-                          </p>
+                        <div className="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[11px] font-mono text-[#e8c99b] opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span>#{photo.id}</span>
+                          {(likedPhotos[photo.id] || 0) > 0 && <span>❤️ {likedPhotos[photo.id]}</span>}
                         </div>
                       </div>
                     </motion.div>
@@ -632,10 +586,9 @@ export default function MemoryGallery({ herName }) {
               </div>
 
               {/* Lightbox Content Layout */}
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-0 overflow-y-auto flex-1 custom-scrollbar">
-                {/* Photo Display View with Touch Swipe */}
+              <div className="relative flex-1 bg-[#08090e] flex flex-col items-center justify-center p-3 sm:p-6 overflow-hidden">
                 <div 
-                  className="relative md:col-span-7 bg-[#08090e] flex items-center justify-center p-3 sm:p-6 min-h-[260px] sm:min-h-[440px] touch-pan-y"
+                  className="relative w-full flex items-center justify-center min-h-[300px] sm:min-h-[500px] max-h-[75vh]"
                   onTouchStart={(e) => {
                     window._lightboxTouchStartX = e.changedTouches[0].clientX;
                   }}
@@ -653,8 +606,8 @@ export default function MemoryGallery({ herName }) {
                 >
                   <img
                     src={filteredMemories[selectedPhotoIndex].src}
-                    alt={filteredMemories[selectedPhotoIndex].title}
-                    className="max-h-[350px] sm:max-h-[500px] w-full object-contain rounded-2xl shadow-2xl border border-white/10 select-none pointer-events-none"
+                    alt={`Moment ${filteredMemories[selectedPhotoIndex].id}`}
+                    className="max-h-[72vh] w-auto max-w-full object-contain rounded-2xl shadow-2xl border border-white/10 select-none pointer-events-none"
                   />
 
                   {/* Navigation Arrows */}
@@ -662,7 +615,7 @@ export default function MemoryGallery({ herName }) {
                     type="button"
                     onClick={handlePrev}
                     aria-label="Previous photo"
-                    className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
+                    className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95 z-10"
                   >
                     <ChevronLeft className="w-5 h-5" />
                   </button>
@@ -670,46 +623,20 @@ export default function MemoryGallery({ herName }) {
                     type="button"
                     onClick={handleNext}
                     aria-label="Next photo"
-                    className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95"
+                    className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#08090e]/80 hover:bg-[#d96b82] text-white backdrop-blur-md border border-white/20 transition-all cursor-pointer shadow-lg active:scale-95 z-10"
                   >
                     <ChevronRight className="w-5 h-5" />
                   </button>
                 </div>
 
-                {/* Story Detail View */}
-                <div className="md:col-span-5 p-6 sm:p-8 flex flex-col justify-between space-y-6 bg-[#0e121c]/50">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2 text-xs font-mono text-[#e8c99b]">
-                      <Calendar className="w-3.5 h-3.5 text-[#e8c99b]" />
-                      <span>{filteredMemories[selectedPhotoIndex].date}</span>
-                      <span>•</span>
-                      <MapPin className="w-3.5 h-3.5 text-[#e8c99b]" />
-                      <span>{filteredMemories[selectedPhotoIndex].location}</span>
-                    </div>
-
-                    <h3 className="text-xl sm:text-2xl font-semibold text-white font-display leading-tight">
-                      {filteredMemories[selectedPhotoIndex].title}
-                    </h3>
-                    <p className="text-sm text-[#e8c99b] font-serif italic">
-                      "{filteredMemories[selectedPhotoIndex].subtitle}"
-                    </p>
-
-                    <div className="p-4 rounded-2xl bg-white/5 border border-white/8">
-                      <p className="text-xs sm:text-sm text-slate-200 font-light leading-relaxed">
-                        {filteredMemories[selectedPhotoIndex].story}
-                      </p>
-                    </div>
+                {/* Devotional Note Footer & Keyboard Hint */}
+                <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-2 pt-3 px-2 border-t border-white/8 text-center sm:text-left">
+                  <div className="text-xs text-slate-300 font-light italic flex items-center gap-2">
+                    <Heart className="w-3.5 h-3.5 text-[#d96b82] fill-[#d96b82] shrink-0 animate-heart-beat" />
+                    <span>Every memory with you is my favorite chapter.</span>
                   </div>
-
-                  {/* Devotional Note Footer & Keyboard Hint */}
-                  <div className="space-y-2 pt-4 border-t border-white/8">
-                    <div className="text-xs text-slate-400 font-light italic flex items-center gap-2">
-                      <Heart className="w-3.5 h-3.5 text-[#d96b82] fill-[#d96b82] flex-shrink-0 animate-heart-beat" />
-                      <span>Every memory with you is my favorite chapter.</span>
-                    </div>
-                    <div className="text-[10px] font-mono text-slate-500">
-                      Keyboard: Use ← Left / → Right arrows to navigate, ESC to close
-                    </div>
+                  <div className="text-[10px] font-mono text-slate-500">
+                    Keyboard: Use ← Left / → Right arrows to navigate, ESC to close
                   </div>
                 </div>
               </div>
@@ -765,24 +692,18 @@ export default function MemoryGallery({ herName }) {
                   transition={{ duration: 0.8, ease: 'easeInOut' }}
                   className="flex flex-col items-center justify-center max-w-3xl text-center space-y-4"
                 >
-                  <div className="relative max-h-[55vh] rounded-3xl overflow-hidden shadow-2xl border border-[#e8c99b]/35 glass-panel-glow">
+                  <div className="relative max-h-[75vh] rounded-3xl overflow-hidden shadow-2xl border border-[#e8c99b]/35 glass-panel-glow">
                     <img
                       src={filteredMemories[slideshowIndex].src}
-                      alt={filteredMemories[slideshowIndex].title}
-                      className="max-h-[55vh] w-auto object-contain"
+                      alt={`Moment ${filteredMemories[slideshowIndex].id}`}
+                      className="max-h-[75vh] w-auto object-contain"
                     />
                   </div>
 
-                  <div className="space-y-1.5 px-4 max-w-2xl">
-                    <div className="text-xs font-mono text-[#e8c99b]">
-                      {filteredMemories[slideshowIndex].date} • {filteredMemories[slideshowIndex].location}
+                  <div className="text-center pt-2">
+                    <div className="text-xs font-mono text-[#e8c99b] tracking-wider">
+                      MOMENT #{filteredMemories[slideshowIndex].id}
                     </div>
-                    <h3 className="text-xl sm:text-3xl font-display text-white font-medium">
-                      {filteredMemories[slideshowIndex].title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-slate-300 font-light italic leading-relaxed">
-                      "{filteredMemories[slideshowIndex].story}"
-                    </p>
                   </div>
                 </motion.div>
               </AnimatePresence>
